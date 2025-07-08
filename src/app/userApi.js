@@ -1,6 +1,6 @@
 export const getUser = async () => {
     try {
-        const res = await fetch('http://nrorealbytrungduzi-production.up.railway.app/api/get-user');
+        const res = await fetch('https://nrorealbytrungduzi-production.up.railway.app/api/get-user');
         return await res.json();
     } catch (e) {
         console.error("Lỗi getUser:", e);
@@ -11,7 +11,7 @@ export const getUser = async () => {
 
 export const createUser = async (userData) => {
     try {
-        const res = await fetch('http://nrorealbytrungduzi-production.up.railway.app/api/create-user', {
+        const res = await fetch('https://nrorealbytrungduzi-production.up.railway.app/api/create-user', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(userData),
@@ -33,7 +33,7 @@ export const createUser = async (userData) => {
 
 export const login = async (userData) => {
     try {
-        const res = await fetch('http://nrorealbytrungduzi-production.up.railway.app/api/login', {
+        const res = await fetch('https://nrorealbytrungduzi-production.up.railway.app/api/login', {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(userData)
@@ -56,7 +56,7 @@ export const login = async (userData) => {
 
 export const createCard = async (infCard) => {
     try {
-        const res = await fetch("http://nrorealbytrungduzi-production.up.railway.app/api/admin/create-card", {
+        const res = await fetch("https://nrorealbytrungduzi-production.up.railway.app/api/admin/create-card", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(infCard),
@@ -72,7 +72,7 @@ export const createCard = async (infCard) => {
 
 export const napCard = async (infCard, infUser) => {
     try {
-        const res = await fetch("http://nrorealbytrungduzi-production.up.railway.app/api/nap-card", {
+        const res = await fetch("https://nrorealbytrungduzi-production.up.railway.app/api/nap-card", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ ...infCard, ...infUser }),
@@ -91,7 +91,7 @@ export const napCard = async (infCard, infUser) => {
 }
 
 export const getHistory = async (userId) => {
-    const res = await fetch("http://nrorealbytrungduzi-production.up.railway.app/api/get-history", {
+    const res = await fetch("https://nrorealbytrungduzi-production.up.railway.app/api/get-history", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id: userId }),
