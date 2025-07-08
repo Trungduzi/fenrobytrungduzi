@@ -1,0 +1,179 @@
+/* Container chính */
+.container-main {
+    max-width: 1380px;
+    height: auto;
+    background-color: #212529;
+    margin: 30px auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    color: white;
+}
+
+/* Flex 2 cột */
+.container-blox {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+/* Bảng top user */
+.container-content {
+    width: 35%;
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.content-title {
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.top-card,
+.nap-card {
+    display: inline-block;
+    background-color: black;
+    color: #c2c2c2;
+    padding: 3% 12%;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.top-card {
+    width: 62.5%;
+    text-align: right;
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.user-table td {
+    padding: 12px 8px;
+    font-size: 16px;
+    border-bottom: 1px solid #444;
+}
+
+/* Cột thứ tự */
+.user-select-1 {
+    color: white;
+    width: 40px;
+    font-weight: bold;
+}
+
+/* Cột tên */
+.user-select-2 {
+    color: white;
+    width: 200px;
+}
+
+/* Cột tiền */
+.user-select-3 {
+    width: 150px;
+    color: #ffb347;
+    font-weight: bold;
+}
+
+/* SLIDER */
+.slider-container {
+    z-index: 0;
+    width: 62%;
+    height: 100%;
+}
+
+.slider-image {
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 5s ease;
+}
+
+.swiper-slide-active .slider-image {
+    transform: scale(1.0);
+}
+
+@media (max-width: 1200px) {
+    .container-blox {
+        flex-direction: column;
+    }
+
+    .container-content,
+    .slider-container {
+        width: 100%;
+    }
+
+    .slider-container {
+        order: 0;
+    }
+
+    .container-content {
+        order: 1;
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+        display: none;
+    }
+}
+
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+    display: none;
+    /* Ẩn icon mặc định của Swiper */
+}
+
+.swiper-button-prev {
+    content: "";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    width: 11%;
+    height: 12%;
+    text-align: center;
+    left: -2%;
+}
+
+.swiper-button-next {
+    content: "";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    width: 11%;
+    height: 12%;
+    text-align: center;
+    left: 91%;
+}
+
+.swiper-button-prev::before {
+    content: "\f104";
+    background-color: rgb(84, 84, 84);
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 30px;
+    color: white;
+    border-radius: 50%;
+    width: 50%;
+    height: 100%;
+    text-align: center;
+    left: -2%;
+}
+
+.swiper-button-next::before {
+    content: "\f105";
+    background-color: rgb(84, 84, 84);
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 30px;
+    color: white;
+    border-radius: 50%;
+    width: 50%;
+    height: 100%;
+    text-align: center;
+    left: 91%;
+}
