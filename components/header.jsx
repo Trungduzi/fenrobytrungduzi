@@ -22,7 +22,7 @@ export default function Header() {
             <div className="header-container">
                 <div className="header-logo">
                     <div className="logo-fix">
-                        <a href="http://localhost:8080/api/get-user" className="header-logo-a">
+                        <a href="https://fenrobytrungduzi.vercel.app/api/get-user" className="header-logo-a">
                             <img src="/logo.jpg" alt="Logo" className="header-logo-i" />
                         </a>
                     </div>
