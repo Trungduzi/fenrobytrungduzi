@@ -113,6 +113,9 @@ export default function Header() {
                         {showMenu && (
                             user ? (
                                 <>
+                                    <li className="show-login">
+                                        <Link to="/" className="login-mobile">Trang chủ</Link>
+                                    </li>
                                     <li className="user-onmenu show-login">
                                         <Link to="/thong-tin-tai-khoan" className="user-signin">
                                             <i className="fa-solid fa-user user-icon"></i>
@@ -129,6 +132,9 @@ export default function Header() {
                                 </>
                             ) : (
                                 <>
+                                    <li className="show-login">
+                                        <Link to="/" className="login-mobile">Trang chủ</Link>
+                                    </li>
                                     <li className="show-login">
                                         <Link to="/login" className="login-mobile">Đăng nhập</Link>
                                     </li>
