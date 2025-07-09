@@ -4,6 +4,7 @@ import "./header.css";
 
 export default function Header() {
     const [user, setUser] = useState(null);
+    const [showMenu, setShowMenu] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -17,6 +18,22 @@ export default function Header() {
         localStorage.removeItem("user"); // Xóa dữ liệu đăng nhập
         window.location.href = "/";      // Về trang chủ + reload luôn
     };
+
+    const handleShow = () => {
+        setShowMenu(!showMenu);
+        console.log("Menu toggled:", !showMenu);
+    };
+    useEffect(() => {
+        const handleClickOutside = (e) => {
+            if (!e.target.closest('.nav-mobile')) {
+                setShowMenu(false);
+            }
+        };
+        document.addEventListener('click', handleClickOutside);
+        return () => document.removeEventListener('click', handleClickOutside);
+    }, []);
+
+
     return (
         <div className="header">
             <div className="header-container">
@@ -87,12 +104,44 @@ export default function Header() {
                         )}
                     </ul>
                     <ul className="nav-mobile">
-                        <div className="menu-toggle">
-                            ☰
-                        </div>
+                        <li className="menu-icon-li">
+                            <button onClick={handleShow} className="menu-toggle">
+                                ☰
+                            </button>
+                        </li>
+
+                        {showMenu && (
+                            user ? (
+                                <>
+                                    <li className="user-onmenu show-login">
+                                        <Link to="/thong-tin-tai-khoan" className="user-signin">
+                                            <i className="fa-solid fa-user user-icon"></i>
+                                            <span className="username-text">{user.username}</span>
+                                            <span className="user-money">- {Math.floor(parseFloat(user.dollar))}</span>
+                                            <span className="dollar">$</span>
+                                        </Link>
+                                    </li>
+                                    <li className="logout-menu">
+                                        <button className="show-signin" onClick={handleLogout}>
+                                            Đăng xuất
+                                        </button>
+                                    </li>
+                                </>
+                            ) : (
+                                <>
+                                    <li className="show-login">
+                                        <Link to="/login" className="login-mobile">Đăng nhập</Link>
+                                    </li>
+                                    <li className="show-signin">
+                                        <Link to="/signin" className="signin-mobile">Đăng ký</Link>
+                                    </li>
+                                </>
+                            )
+                        )}
                     </ul>
+
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
