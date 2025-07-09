@@ -22,7 +22,7 @@ export default function Header() {
             <div className="header-container">
                 <div className="header-logo">
                     <div className="logo-fix">
-                        <a href="https://nrorealbytrungduzi-production.up.railway.app/api/get-user" className="header-logo-a">
+                        <a href="/" className="header-logo-a">
                             <img src="/logo.jpg" alt="Logo" className="header-logo-i" />
                         </a>
                     </div>
@@ -85,6 +85,11 @@ export default function Header() {
                                 </li>
                             </>
                         )}
+                    </ul>
+                    <ul className="nav-mobile">
+                        <div className="menu-toggle">
+                            ☰
+                        </div>
                     </ul>
                 </div>
             </div>

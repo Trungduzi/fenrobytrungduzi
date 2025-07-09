@@ -38,14 +38,18 @@
     display: inline-block;
     background-color: black;
     color: #c2c2c2;
-    padding: 3% 12%;
+    width: 30%;
     font-weight: bold;
     text-transform: uppercase;
+    text-align: center;
+    padding: 15px 10px;
 }
 
 .top-card {
-    width: 62.5%;
-    text-align: right;
+    width: 70%;
+    text-align: left;
+    padding: 15px 10px 15px 45px;
+    border-width: border;
 }
 
 .user-table {

@@ -59,6 +59,7 @@ li {
 }
 
 .logo-fix {
+    min-width: 170px;
     width: 100%;
     height: 66%;
     box-sizing: border-box;
@@ -107,7 +108,7 @@ li {
     display: flex;
     align-items: center;
     text-align: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
 .navigation-element {
@@ -237,49 +238,27 @@ li {
 
 
 /* Mặc định ẩn nút menu trên PC */
-.menu-toggle {
+
+
+
+
+.nav-mobile {
     display: none;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
+    right: 30px;
+    position: absolute;
 }
 
-.toggle-icon {
-    width: 40px;
-    height: 35px;
-    border-style: solid;
-    border-radius: 6px;
-    border-width: 1px;
+.menu-toggle {
+    display: inline-block;
     background-color: white;
+    color: black;
+    width: 40px;
+    font-size: 24px;
+    border-radius: 9px;
+    position: relative;
+    right: 0;
 }
 
-/* Ẩn menu ở mobile */
-/* @media (max-width: 1375px) {
-    .header-navigation {
-        display: none;
-        flex-direction: column;
-        background-color: var(--header-color);
-        width: 100%;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        z-index: 10;
-    }
-
-    .navigation-message {
-        display: block;
-    }
-
-    .header-navigation.active {
-        display: flex;
-    }
-
-    .menu-toggle {
-        display: block;
-    }
-} */
 
 .username-link {
     color: white;
@@ -324,4 +303,79 @@ li {
 
 .dollar {
     color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Ẩn menu ở mobile */
+@media (max-width: 1375px) {
+    /* .header-navigation {
+        display: none;
+        flex-direction: column;
+        background-color: var(--header-color);
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 10;
+    } */
+
+    .navigation-message {
+        display: none;
+    }
+
+    .navigation-left {
+        display: none;
+    }
+
+    .nav-right-li {
+        display: none;
+    }
+
+    .nav-mobile {
+        display: inline-block;
+    }
 }
