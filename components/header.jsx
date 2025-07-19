@@ -23,15 +23,15 @@ export default function Header() {
         setShowMenu(!showMenu);
         console.log("Menu toggled:", !showMenu);
     };
-    useEffect(() => {
-        const handleClickOutside = (e) => {
-            if (!e.target.closest('.nav-mobile')) {
-                setShowMenu(false);
-            }
-        };
-        document.addEventListener('click', handleClickOutside);
-        return () => document.removeEventListener('click', handleClickOutside);
-    }, []);
+    // useEffect(() => {
+    //     const handleClickOutside = (e) => {
+    //         if (!e.target.closest('.nav-mobile')) {
+    //             setShowMenu(false);
+    //         }
+    //     };
+    //     document.addEventListener('click', handleClickOutside);
+    //     return () => document.removeEventListener('click', handleClickOutside);
+    // }, []);
 
 
     return (
@@ -103,38 +103,60 @@ export default function Header() {
                             </>
                         )}
                     </ul>
+
                     <ul className="nav-mobile">
                         <li className="menu-icon-li">
                             <button onClick={handleShow} className="menu-toggle">
                                 ☰
                             </button>
                         </li>
+                    </ul>
+                </div>
+                <div className="header-menumobile">
+                    {showMenu && (
+                        <>
+                            <li className="show-home">
+                                <Link to="/" className="show-a">Trang chủ</Link>
+                            </li>
+                            <li className="show-addcard">
+                                <div className="show-addcard-div">
+                                    <a href="#" className="title-addcard">Nạp tiền</a>
+                                    <div className="nav-blockmobile">
+                                        <div className="nav-block--fixmobile">
+                                            <ul className="nav-sub">
+                                                <li><Link to="/nap-the-tu-dong" className="nav-sub-1mobile">Nạp thẻ cào</Link></li>
+                                                <li><Link to="/nap-tien-ATM" className="nav-sub-2mobile">Nạp ATM tự động</Link></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li className="show-dichvu">
+                                <Link to="/dich-vu" className="show-a">Dịch vụ</Link>
+                            </li>
+                            <li className="show-information">
+                                <Link to="/tin-tuc" className="show-a">Tin tức</Link>
+                            </li>
 
-                        {showMenu && (
-                            user ? (
+                            {user ? (
                                 <>
-                                    <li className="show-login">
-                                        <Link to="/" className="login-mobile">Trang chủ</Link>
-                                    </li>
-                                    <li className="user-onmenu show-login">
-                                        <Link to="/thong-tin-tai-khoan" className="user-signin">
-                                            <i className="fa-solid fa-user user-icon"></i>
-                                            <span className="username-text">{user.username}</span>
-                                            <span className="user-money">- {Math.floor(parseFloat(user.dollar))}</span>
-                                            <span className="dollar">$</span>
+                                    <li className="user-onmenu show-loginmobile">
+                                        <Link to="/thong-tin-tai-khoan" className="user-signinmobile">
+                                            <i className="fa-solid fa-user user-icon blackc"></i>
+                                            <span className="username-text blackc">{user.username}</span>
+                                            <span className="user-money blackc">- {Math.floor(parseFloat(user.dollar))}</span>
+                                            <span className="dollar blackc">$</span>
                                         </Link>
                                     </li>
-                                    <li className="logout-menu">
-                                        <button className="show-signin" onClick={handleLogout}>
+                                    <li className="logout-menumobile">
+                                        <button className="show-signinmobile" onClick={handleLogout}>
                                             Đăng xuất
                                         </button>
                                     </li>
                                 </>
                             ) : (
                                 <>
-                                    <li className="show-login">
-                                        <Link to="/" className="login-mobile">Trang chủ</Link>
-                                    </li>
+
                                     <li className="show-login">
                                         <Link to="/login" className="login-mobile">Đăng nhập</Link>
                                     </li>
@@ -142,12 +164,14 @@ export default function Header() {
                                         <Link to="/signin" className="signin-mobile">Đăng ký</Link>
                                     </li>
                                 </>
-                            )
-                        )}
-                    </ul>
-
+                            )}
+                        </>
+                    )}
                 </div>
             </div>
         </div >
     );
 }
+
+
+

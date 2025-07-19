@@ -241,14 +241,15 @@ li {
 
 .nav-mobile {
     display: none;
+    position: absolute;
+    right: 17px;
 }
 
-
-.menu-icon-li {
-    /* display: none; */
-    right: 30px;
+.header-menumobile {
+    display: none;
     position: absolute;
-    z-index: 13;
+    right: 20px;
+    top: 55px;
 }
 
 .menu-toggle {
@@ -310,44 +311,116 @@ li {
 }
 
 
+.header-menumobile {
+    width: 100vw;
+    position: absolute;
+    top: 150px;
+    background-color: #212529;
+    z-index: 10;
+    font-size: 20px;
+    right: 0;
+    padding-left: 30px;
+}
 
 
 
 
+.show-home {
+    width: 100%;
+}
+
+.show-a {
+    display: inline-block;
+    width: 100%;
+}
+
+.show-addcard {
+    display: block;
+}
+
+.show-dichvu {
+    display: block;
+}
+
+.show-information {
+    display: block;
+}
 
 
+.show-addcard:hover .nav-blockmobile {
+    display: block;
+}
+
+.nav-blockmobile {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: none;
+}
+
+.nav-block--fixmobile {
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    background-color: var(--navigation-color);
+    font-weight: normal;
+    font-size: 17px;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.nav-sub-1mobile {
+    display: block;
+    width: 100%;
+    height: 50%;
+    box-sizing: border-box;
+    padding-top: 15px;
+    padding-left: 28px;
+    color: white;
+}
+
+.nav-sub-2mobile {
+    display: block;
+    width: 100%;
+    height: 50%;
+    box-sizing: border-box;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 28px;
+    color: white;
+}
+
+.show-a {
+    padding-top: 10px;
+}
+
+.show-addcard {
+    padding-top: 10px;
+}
+
+.dollar {
+    padding-top: 10px;
+}
 
 .show-login {
-    display: inline-block;
-    position: absolute;
-    width: 100vw;
-    top: 150px;
-    background-color: aqua;
-    right: 0;
-    z-index: 11;
-    font-size: 30px;
-    padding-top: 2px;
+    padding-top: 10px;
 }
-
-/* .login-mobile {
-    display: inline-block;
-    width: 100vw;
-} */
 
 .show-signin {
-    font-size: 30px;
-    display: inline-block;
-    position: absolute;
-    width: 100vw;
-    top: 197px;
-    padding-top: 2px;
-    background-color: aqua;
-    right: 0;
-    z-index: 11;
+    padding-top: 10px;
 }
 
+.show-signinmobile {
+    width: 100vw;
+    text-align: left;
+    background-color: rgb(33, 37, 41);
+    border-style: none;
+    border-width: 0ch;
+}
 
-
+.blackc {
+    color: black;
+}
 
 
 
@@ -378,7 +451,7 @@ li {
 
 
 /* Ẩn menu ở mobile */
-@media (max-width: 1375px) {
+@media (max-width: 1155px) {
     .navigation-message {
         display: none;
     }
@@ -393,5 +466,9 @@ li {
 
     .nav-mobile {
         display: inline-block;
+    }
+
+    .header-menumobile {
+        display: block;
     }
 }
