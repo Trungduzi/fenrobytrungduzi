@@ -1,17 +1,25 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
+import history from 'connect-history-api-fallback'
+import { createHtmlPlugin } from 'vite-plugin-html'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    createHtmlPlugin()
+  ],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
   },
   server: {
-    // 👇 Fix lỗi 404 khi reload ở route nội bộ
-    historyApiFallback: true,
+    middlewareMode: false,
+    setupMiddlewares(middlewares) {
+      middlewares.unshift(history())
+      return middlewares
+    }
   }
 })
