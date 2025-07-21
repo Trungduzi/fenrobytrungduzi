@@ -91,6 +91,8 @@ export default function CardForm() {
                         value={newCard.code}
                         onChange={handleChange}
                         autoComplete="21022025"
+                        minLength={13}
+                        maxLength={13}
                     ></input>
                 </div>
                 <div className="mb-4">
@@ -102,6 +104,8 @@ export default function CardForm() {
                         value={newCard.serial}
                         onChange={handleChange}
                         autoComplete="21022025"
+                        minLength={13}
+                        maxLength={13}
                     />
                 </div>
             </div>

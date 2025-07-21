@@ -2,6 +2,8 @@ import "./napthetudong.css";
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { napCard, getHistory } from "../src/app/userApi.js";
+import { useNavigate } from 'react-router-dom';
+
 
 export default function NapTheTuDong() {
     function generateCaptcha() {
@@ -14,6 +16,7 @@ export default function NapTheTuDong() {
         code: '',
         serial: '',
     });
+    const navigate = useNavigate();
     const [hideSpan, setHideSpan] = useState(true);
     const [user, setUser] = useState({});
     const [historyUser, setHistoryUser] = useState([]);
@@ -37,7 +40,7 @@ export default function NapTheTuDong() {
         const storedUser = localStorage.getItem("user");
         if (storedUser) {
             const parsedUser = JSON.parse(storedUser);
-            console.log("User từ localStorage:", parsedUser);
+            // console.log("User từ localStorage:", parsedUser);
             setUser(JSON.parse(storedUser));
         }
     }, []);
@@ -65,12 +68,18 @@ export default function NapTheTuDong() {
         }
     }, [user.id]);
 
+    function formatDateTime(isoString) {
+        const date = new Date(isoString);
+        const pad = (n) => n.toString().padStart(2, '0');
+
+        const time = `${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
+        const day = `${pad(date.getDate())}-${pad(date.getMonth() + 1)}-${date.getFullYear()}`;
+        return `${time} ${day}`;
+    }
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-
         let hasError = false;
         // Tạo bản sao mới của error
         const newError = { ...error };
@@ -116,14 +125,10 @@ export default function NapTheTuDong() {
             console.log("Submit hợp lệ:", formData);
             // Xử lý tiếp ở đây...
         }
-
-
-
         if (formData.captchaInput !== captcha) {
             alert("Mã captcha không đúng!");
             return;
         }
-
         const res = await napCard(formData, user);
         if (res.status === true) {
             setFormData({
@@ -144,7 +149,7 @@ export default function NapTheTuDong() {
             console.log(res?.message || "Có lỗi xảy ra khi lấy data từ backend.");
         }
         setTimeout(() => {
-            window.location.href = "/nap-the-tu-dong";
+            navigate("/nap-the-tu-dong");
         }, 500);
     };
 
@@ -262,11 +267,12 @@ export default function NapTheTuDong() {
                     <button type="submit" className="btn btn-info text-white">Nạp Thẻ</button>
                 </form>
 
-                <div className="mt-5 fw-bold fs-5">Ngày 25/06/2025</div>
+                {/* <div className="mt-5 fw-bold fs-5">Ngày 25/06/2025</div> */}
 
                 <table className="table table-bordered table-striped mt-3">
                     <thead className="table-light">
                         <tr>
+                            <th>STT</th>
                             <th>Thời gian</th>
                             <th>Nhà mạng</th>
                             <th>Mã thẻ</th>
@@ -277,9 +283,10 @@ export default function NapTheTuDong() {
                         </tr>
                     </thead>
                     <tbody>
-                        {historyUser.map((item, index) => (
+                        {historyUser.map((item, index, array) => (
                             <tr key={index}>
-                                <td>{item.createdAt}</td>
+                                <td>{array.length - index}</td>
+                                <td>{formatDateTime(item.createdAt)}</td>
                                 <td>{item.name}</td>
                                 <td>{item.code}</td>
                                 <td>{item.serial}</td>

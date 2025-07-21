@@ -15,24 +15,22 @@ export default function Header() {
     }, []);
 
     const handleLogout = () => {
-        localStorage.removeItem("user"); // Xóa dữ liệu đăng nhập
-        window.location.href = "/";      // Về trang chủ + reload luôn
+        localStorage.removeItem("user");
+        window.location.href = "/";
     };
 
     const handleShow = () => {
         setShowMenu(!showMenu);
         console.log("Menu toggled:", !showMenu);
     };
-    // useEffect(() => {
-    //     const handleClickOutside = (e) => {
-    //         if (!e.target.closest('.nav-mobile')) {
-    //             setShowMenu(false);
-    //         }
-    //     };
-    //     document.addEventListener('click', handleClickOutside);
-    //     return () => document.removeEventListener('click', handleClickOutside);
-    // }, []);
 
+    const handleRedirect = (path) => {
+        if (user) {
+            navigate(path);
+        } else {
+            navigate("/login");
+        }
+    };
 
     return (
         <div className="header">
@@ -50,12 +48,17 @@ export default function Header() {
                             <Link to="/" className="element-a">Trang chủ</Link>
                         </li>
                         <li className="navigation-element navigation-special">
-                            <div className="element-a"><a href="#" className="element-div-a">Nạp tiền</a>
+                            <div className="element-a">
+                                <a href="#" className="element-div-a">Nạp tiền</a>
                                 <div className="nav-block">
                                     <div className="nav-block--fix">
                                         <ul className="nav-sub">
-                                            <li><Link to="/nap-the-tu-dong" className="nav-sub-1">Nạp thẻ cào</Link></li>
-                                            <li><Link to="/nap-tien-ATM" className="nav-sub-2">Nạp ATM tự động</Link></li>
+                                            <li>
+                                                <a onClick={() => handleRedirect("/nap-the-tu-dong")} className="nav-sub-1">Nạp thẻ cào</a>
+                                            </li>
+                                            <li>
+                                                <a onClick={() => handleRedirect("/nap-tien-ATM")} className="nav-sub-2">Nạp ATM tự động</a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -112,6 +115,7 @@ export default function Header() {
                         </li>
                     </ul>
                 </div>
+
                 <div className="header-menumobile">
                     {showMenu && (
                         <>
@@ -124,8 +128,12 @@ export default function Header() {
                                     <div className="nav-blockmobile">
                                         <div className="nav-block--fixmobile">
                                             <ul className="nav-sub">
-                                                <li><Link to="/nap-the-tu-dong" className="nav-sub-1mobile">Nạp thẻ cào</Link></li>
-                                                <li><Link to="/nap-tien-ATM" className="nav-sub-2mobile">Nạp ATM tự động</Link></li>
+                                                <li>
+                                                    <a onClick={() => handleRedirect("/nap-the-tu-dong")} className="nav-sub-1mobile">Nạp thẻ cào</a>
+                                                </li>
+                                                <li>
+                                                    <a onClick={() => handleRedirect("/nap-tien-ATM")} className="nav-sub-2mobile">Nạp ATM tự động</a>
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
@@ -156,7 +164,6 @@ export default function Header() {
                                 </>
                             ) : (
                                 <>
-
                                     <li className="show-login">
                                         <Link to="/login" className="login-mobile">Đăng nhập</Link>
                                     </li>
@@ -169,9 +176,6 @@ export default function Header() {
                     )}
                 </div>
             </div>
-        </div >
+        </div>
     );
 }
-
-
-

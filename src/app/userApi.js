@@ -8,7 +8,6 @@ export const getUser = async () => {
     }
 };
 
-
 export const createUser = async (userData) => {
     try {
         const res = await fetch('https://nrorealbytrungduzi-production.up.railway.app/api/create-user', {
@@ -97,6 +96,25 @@ export const getHistory = async (userId) => {
         body: JSON.stringify({ id: userId }),
     })
     const data = await res.json();
-    console.log("Dữ liệu lịch sử trả về:", data);
     return data;
 }
+
+export const getHistoryCard = async (userId) => {
+    try {
+        // console.log("Received userId:", userId);
+        const res = await fetch(`https://nrorealbytrungduzi-production.up.railway.app/api/get-historycard?id=${userId}`);
+
+        if (!res.ok) {
+            const html = await res.text();
+            console.error("Phản hồi HTML:", html);
+            throw new Error(`API lỗi: ${res.status}`);
+        }
+
+        const data = await res.json();
+        console.log("data nè: ", data);
+        return data;
+    } catch (e) {
+        console.error("Lỗi getCard:", e.message);
+        return { error: "Không thể lấy data" };
+    }
+};

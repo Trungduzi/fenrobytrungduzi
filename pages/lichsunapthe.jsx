@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getHistoryCard } from "../src/app/userApi";
 
 export default function LichSuNapThe() {
     const [searchText, setSearchText] = useState("");
@@ -6,27 +7,63 @@ export default function LichSuNapThe() {
     const [status, setStatus] = useState("");
     const [fromDate, setFromDate] = useState("");
     const [toDate, setToDate] = useState("");
+    const [user, setUser] = useState({});
+    const [history, setHistory] = useState([]);
 
-    const fakeData = [
-        {
-            time: "25/06/2025 18:33:25",
-            network: "VIETTEL",
-            card: "1234324323232",
-            serial: "1232412311212",
-            value: "10.000",
-            result: "Thẻ sai",
-            received: "0 đ",
-        },
-        {
-            time: "25/06/2025 18:33:03",
-            network: "VIETTEL",
-            card: "12344442123",
-            serial: "12324123112",
-            value: "10.000",
-            result: "Thẻ sai",
-            received: "0 đ",
-        },
-    ];
+    useEffect(() => {
+        const storedUser = localStorage.getItem("user");
+        if (storedUser) {
+            const parsedUser = JSON.parse(storedUser);
+            // console.log("User từ localStorage:", parsedUser);
+            setUser(JSON.parse(storedUser));
+        }
+    }, []);
+
+    // const handleSearch = async (e) => {
+    //     e.preventDefault();
+    //     try {
+    //         const res = await getHistoryCard(user.id);
+    //         // console.log(res);
+    //     } catch (error) {
+    //         console.error("Lỗi khi tìm kiếm:", error);
+    //         alert("Đã xảy ra lỗi khi tìm kiếm.");
+    //     }
+    // };
+
+    // const handleSearchToday = async (e) => {
+    //     e.preventDefault();
+    //     try {
+    //         const res = await getHistoryCard(user.id);
+    //         console.log(res);
+    //     } catch (error) {
+    //         console.error("Lỗi khi tìm kiếm:", error);
+    //         alert("Đã xảy ra lỗi khi tìm kiếm.");
+    //     }
+    // };
+
+    useEffect(() => {
+        const fetchHistory = async () => {
+            try {
+                const res = await getHistoryCard(user.id);
+                setHistory(res);
+            } catch (error) {
+                console.error("Lỗi khi lấy lịch sử:", error);
+            }
+        };
+
+        if (user.id) {
+            fetchHistory();
+        }
+    }, [user.id]);
+
+    function formatDateTime(isoString) {
+        const date = new Date(isoString);
+        const pad = (n) => n.toString().padStart(2, '0');
+
+        const time = `${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
+        const day = `${pad(date.getDate())}-${pad(date.getMonth() + 1)}-${date.getFullYear()}`;
+        return `${time} ${day}`;
+    }
 
     return (
         <div>
@@ -87,15 +124,16 @@ export default function LichSuNapThe() {
 
             <div className="d-flex gap-2 mb-3">
                 <a herf="#" className="btn btn-info">Tìm kiếm</a>
-                <a herf="#" className="btn btn-danger">Hôm nay</a>
+                <button className="btn btn-danger">Hôm nay</button>
                 <a herf="#" className="btn btn-danger">Hôm qua</a>
                 <a herf="#" className="btn btn-danger">Tháng này</a>
-                <a herf="#" className="btn btn-info">Tất cả</a>
+                <button className="btn btn-info">Tất cả</button>
             </div>
 
             <table className="table table-bordered">
                 <thead>
                     <tr>
+                        <th>STT</th>
                         <th>Thời gian</th>
                         <th>Nhà mạng</th>
                         <th>Mã thẻ</th>
@@ -105,24 +143,27 @@ export default function LichSuNapThe() {
                         <th>Thực nhận</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
+                {/* <tr>
                         <td colSpan="7" className="fw-bold text-start text-dark">
                             Ngày 25/06/2025
                         </td>
-                    </tr>
-                    {fakeData.map((item, idx) => (
-                        <tr key={idx}>
-                            <td>{item.time}</td>
-                            <td>{item.network}</td>
-                            <td>{item.card}</td>
-                            <td>{item.serial}</td>
-                            <td>{item.value}</td>
-                            <td>
-                                <span className="badge bg-danger">{item.result}</span>
-                            </td>
-                            <td>{item.received}</td>
-                        </tr>
+                    </tr> */}
+                <tbody>
+                    {history.map((item, index, array) => (
+                        item.createdAt && item.code && item.name ? (
+                            <tr key={index}>
+                                <td>{array.length - index}</td>
+                                <td>{formatDateTime(item.createdAt)}</td>
+                                <td>{item.name}</td>
+                                <td>{item.code}</td>
+                                <td>{item.serial}</td>
+                                <td>{item.price}</td>
+                                <td>
+                                    <span className="badge bg-danger">{item.status}</span>
+                                </td>
+                                <td>{item.receive}</td>
+                            </tr>
+                        ) : null
                     ))}
                 </tbody>
             </table>
