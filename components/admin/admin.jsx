@@ -18,20 +18,20 @@ export default function CardForm() {
         e.preventDefault();
         try {
             const res = await createCard(newCard);
-            if (res.status === true) {
-                setNewCard({
-                    name: "",
-                    price: "",
-                    code: "",
-                    serial: "",
-                })
-            } else {
-                console.log(res?.message || "Có lỗi xảy ra khi lấy data từ backend.");
-            }
+            // if (res.status === true) {
+            //     setNewCard({
+            //         name: "",
+            //         price: "",
+            //         code: "",
+            //         serial: "",
+            //     })
+            // } else {
+            //     console.log(res?.message || "Có lỗi xảy ra khi lấy data từ backend.");
+            // }
         } catch (e) {
             console.log("không vào được backend");
         }
-        window.location.href = "/admin"
+        // window.location.href = "/admin"
     };
 
     return (
