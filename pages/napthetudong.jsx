@@ -149,8 +149,13 @@ export default function NapTheTuDong() {
             console.log(res?.message || "Có lỗi xảy ra khi lấy data từ backend.");
         }
         setTimeout(() => {
-            navigate("/nap-the-tu-dong");
+            e.preventDefault();
+            window.location.href = "/nap-the-tu-dong";
+
         }, 500);
+        // setTimeout(() => {
+        //     navigate("/nap-the-tu-dong");
+        // }, 500);
     };
 
     return (
