@@ -152,7 +152,7 @@ export default function NapTheTuDong() {
             // e.preventDefault();
             window.location.href = "/nap-the-tu-dong";
 
-        }, 500);
+        }, 300);
         // setTimeout(() => {
         //     navigate("/nap-the-tu-dong");
         // }, 500);
