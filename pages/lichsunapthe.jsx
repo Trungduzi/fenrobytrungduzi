@@ -19,27 +19,75 @@ export default function LichSuNapThe() {
         }
     }, []);
 
-    // const handleSearch = async (e) => {
-    //     e.preventDefault();
-    //     try {
-    //         const res = await getHistoryCard(user.id);
-    //         // console.log(res);
-    //     } catch (error) {
-    //         console.error("Lỗi khi tìm kiếm:", error);
-    //         alert("Đã xảy ra lỗi khi tìm kiếm.");
-    //     }
-    // };
+    const handleSearch = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await getHistoryCard(user.id);
+            setHistory(res);
+        } catch (error) {
+            console.error("Lỗi khi tìm kiếm:", error);
+            alert("Đã xảy ra lỗi khi tìm kiếm.");
+        }
+    };
 
-    // const handleSearchToday = async (e) => {
-    //     e.preventDefault();
-    //     try {
-    //         const res = await getHistoryCard(user.id);
-    //         console.log(res);
-    //     } catch (error) {
-    //         console.error("Lỗi khi tìm kiếm:", error);
-    //         alert("Đã xảy ra lỗi khi tìm kiếm.");
-    //     }
-    // };
+    const handleSearchToday = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await getHistoryCard(user.id); // res là mảng trực tiếp
+            const DateToday = new Date().toLocaleDateString('en-CA'); // "yyyy-mm-dd"
+            const todayHistory = res.filter(item => {
+                const itemDate = new Date(item.createdAt).toLocaleDateString('en-CA');
+                return itemDate === DateToday;
+            });
+
+            setHistory(todayHistory);
+        } catch (error) {
+            console.error("Lỗi khi tìm kiếm:", error);
+            alert("Đã xảy ra lỗi khi tìm kiếm.");
+        }
+    };
+
+    const handleSearchYesterday = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await getHistoryCard(user.id);
+            const today = new Date();
+            today.setDate(today.getDate() - 1);
+            const dateCompare = today.toLocaleDateString('en-CA');
+            const todayHistory = history.filter(item =>
+                new Date(item.createdAt).toLocaleDateString('en-CA') === dateCompare
+            );
+            setHistory(todayHistory);
+        }
+        catch (error) {
+            console.error("Lỗi khi tìm kiếm:", error);
+            alert("Đã xảy ra lỗi khi tìm kiếm.");
+        }
+    };
+
+    const handleSearchLast = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await getHistoryCard(user.id);
+            const today = new Date();
+            today.setDate(today.getDate() - 2);
+            const dateCompare = today.toLocaleDateString('en-CA');
+            const todayHistory = history.filter(item =>
+                new Date(item.createdAt).toLocaleDateString('en-CA') === dateCompare
+            );
+            setHistory(todayHistory);
+        }
+        catch (error) {
+            console.error("Lỗi khi tìm kiếm:", error);
+            alert("Đã xảy ra lỗi khi tìm kiếm.");
+        }
+    };
+
+    const finding = async (e) => {
+        e.preventDefault();
+        console.log("Đang tìm kiếm...");
+        alert("Đang tìm kiếm...");
+    }
 
     useEffect(() => {
         const fetchHistory = async () => {
@@ -123,11 +171,11 @@ export default function LichSuNapThe() {
             </div>
 
             <div className="d-flex gap-2 mb-3">
-                <a herf="#" className="btn btn-info">Tìm kiếm</a>
-                <button className="btn btn-danger">Hôm nay</button>
-                <a herf="#" className="btn btn-danger">Hôm qua</a>
-                <a herf="#" className="btn btn-danger">Tháng này</a>
-                <button className="btn btn-info">Tất cả</button>
+                <button onClick={finding} className="btn btn-info">Tìm kiếm</button>
+                <button onClick={handleSearchToday} className="btn btn-danger">Hôm nay</button>
+                <button onClick={handleSearchYesterday} className="btn btn-danger">Hôm qua</button>
+                <button onClick={handleSearchLast} className="btn btn-danger">Tháng này</button>
+                <button onClick={handleSearch} className="btn btn-info">Tất cả</button>
             </div>
 
             <table className="table table-bordered">

@@ -111,7 +111,6 @@ export const getHistoryCard = async (userId) => {
         }
 
         const data = await res.json();
-        console.log("data nè: ", data);
         return data;
     } catch (e) {
         console.error("Lỗi getCard:", e.message);
