@@ -54,7 +54,7 @@ export default function LichSuNapThe() {
             const today = new Date();
             today.setDate(today.getDate() - 1);
             const dateCompare = today.toLocaleDateString('en-CA');
-            const todayHistory = history.filter(item =>
+            const todayHistory = res.filter(item =>
                 new Date(item.createdAt).toLocaleDateString('en-CA') === dateCompare
             );
             setHistory(todayHistory);
@@ -65,7 +65,7 @@ export default function LichSuNapThe() {
         }
     };
 
-    const handleSearchLast = async (e) => {
+    const handleSearchMonth = async (e) => {
         e.preventDefault();
         try {
             const res = await getHistoryCard(user.id);
@@ -174,7 +174,7 @@ export default function LichSuNapThe() {
                 <button onClick={finding} className="btn btn-info">Tìm kiếm</button>
                 <button onClick={handleSearchToday} className="btn btn-danger">Hôm nay</button>
                 <button onClick={handleSearchYesterday} className="btn btn-danger">Hôm qua</button>
-                <button onClick={handleSearchLast} className="btn btn-danger">Tháng này</button>
+                <button onClick={handleSearchMonth} className="btn btn-danger">Tháng này</button>
                 <button onClick={handleSearch} className="btn btn-info">Tất cả</button>
             </div>
 
