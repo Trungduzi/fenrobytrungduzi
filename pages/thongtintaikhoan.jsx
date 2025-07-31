@@ -44,9 +44,9 @@ export default function ThongTinTaiKhoan() {
                                 <tr>
                                     <th>Mật khẩu:</th>
                                     <td>
-                                        <span className="text-danger">***</span>
+                                        <span className="fw-bold text-danger">***</span>
                                         &nbsp;
-                                        <a href="#" className="text-danger text-decoration-underline">
+                                        <a href="/doi-mat-khau" className="fw-bold fst-italic text-danger text-decoration-none ">
                                             Đổi mật khẩu
                                         </a>
                                     </td>

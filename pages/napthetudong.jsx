@@ -1,4 +1,3 @@
-import "./napthetudong.css";
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { napCard, getHistory } from "../src/app/userApi.js";

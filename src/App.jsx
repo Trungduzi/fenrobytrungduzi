@@ -21,40 +21,49 @@ import LichSuTrungNick from '../pages/lichsutrungnick.jsx';
 import RutNgocNro from '../pages/rutngocnro.jsx';
 import RutVangNro from '../pages/rutvangnro.jsx';
 import RutQuanHuyLienQuan from '../pages/rutquanhuylienquan.jsx';
+import SectionContainer from '../pages/home/sectionContainer.jsx'
+import Muathecao from '../pages/home/muathecao.jsx';
+import Minigame from '../pages/home/minigame.jsx';
+import DoiMatKhau from '../pages/doimatkhau.jsx';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/admin" element={
-          <>
-            <Admin />
-          </>
-        }
+          <> <Admin />
+          </>}
         />
-        <Route
-          path="/" element={
-            <>
-              <Header />
-              <Slide />
-            </>
-          } />
+
+
+        <Route path="/" element={
+          <>
+            <Header />
+            <Slide />
+            <SectionContainer title="DỊCH VỤ NỔI BẬT">
+              <Muathecao />
+            </SectionContainer>
+            <SectionContainer title="DỊCH VỤ MIN GAME">
+              <Minigame />
+            </SectionContainer>
+          </>}
+        />
 
 
         <Route path="/login" element={
           <>
             <Header />
             <Login />
-          </>
-        } />
+          </>}
+        />
 
 
         <Route path="/signin" element={
           <>
             <Header />
             <Signin />
-          </>
-        } />
+          </>}
+        />
 
 
         <Route element={<AppLayOut />}>
@@ -71,6 +80,7 @@ function App() {
           <Route path="rut-ngoc-nro" element={<RutNgocNro />} />
           <Route path="rut-vang-nro" element={<RutVangNro />} />
           <Route path="rut-quan-huy-lien-quan" element={<RutQuanHuyLienQuan />} />
+          <Route path="doi-mat-khau" element={<DoiMatKhau />} />
         </Route>
       </Routes>
     </BrowserRouter >

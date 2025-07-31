@@ -3,6 +3,7 @@ import { getHistoryCard } from "../src/app/userApi";
 
 export default function LichSuNapThe() {
     const [searchText, setSearchText] = useState("");
+    const [searchText1, setSearchText1] = useState("");
     const [cardType, setCardType] = useState("");
     const [status, setStatus] = useState("");
     const [fromDate, setFromDate] = useState("");
@@ -14,7 +15,6 @@ export default function LichSuNapThe() {
         const storedUser = localStorage.getItem("user");
         if (storedUser) {
             const parsedUser = JSON.parse(storedUser);
-            // console.log("User từ localStorage:", parsedUser);
             setUser(JSON.parse(storedUser));
         }
     }, []);
@@ -24,6 +24,12 @@ export default function LichSuNapThe() {
         try {
             const res = await getHistoryCard(user.id);
             setHistory(res);
+            setSearchText("");
+            setSearchText1("");
+            setCardType("");
+            setStatus("");
+            setFromDate("");
+            setToDate("");
         } catch (error) {
             console.error("Lỗi khi tìm kiếm:", error);
             alert("Đã xảy ra lỗi khi tìm kiếm.");
@@ -41,6 +47,12 @@ export default function LichSuNapThe() {
             });
 
             setHistory(todayHistory);
+            setSearchText("");
+            setSearchText1("");
+            setCardType("");
+            setStatus("");
+            setFromDate("");
+            setToDate("");
         } catch (error) {
             console.error("Lỗi khi tìm kiếm:", error);
             alert("Đã xảy ra lỗi khi tìm kiếm.");
@@ -58,6 +70,12 @@ export default function LichSuNapThe() {
                 new Date(item.createdAt).toLocaleDateString('en-CA') === dateCompare
             );
             setHistory(todayHistory);
+            setSearchText("");
+            setSearchText1("");
+            setCardType("");
+            setStatus("");
+            setFromDate("");
+            setToDate("");
         }
         catch (error) {
             console.error("Lỗi khi tìm kiếm:", error);
@@ -69,15 +87,21 @@ export default function LichSuNapThe() {
         e.preventDefault();
         try {
             const res = await getHistoryCard(user.id);
-            const today = new Date();
-            today.setDate(today.getDate() - 2);
-            const dateCompare = today.toLocaleDateString('en-CA');
-            const todayHistory = history.filter(item =>
-                new Date(item.createdAt).toLocaleDateString('en-CA') === dateCompare
-            );
-            setHistory(todayHistory);
-        }
-        catch (error) {
+            const dateToday = new Date(); // "yyyy-mm-dd"
+            const monthToday = dateToday.getMonth() + 1;
+            const monthHistory = res.filter(item => {
+                const itemMonth = new Date(item.createdAt).getMonth() + 1;
+                return itemMonth === monthToday;
+            });
+
+            setHistory(monthHistory);
+            setSearchText("");
+            setSearchText1("");
+            setCardType("");
+            setStatus("");
+            setFromDate("");
+            setToDate("");
+        } catch (error) {
             console.error("Lỗi khi tìm kiếm:", error);
             alert("Đã xảy ra lỗi khi tìm kiếm.");
         }
@@ -85,9 +109,35 @@ export default function LichSuNapThe() {
 
     const finding = async (e) => {
         e.preventDefault();
-        console.log("Đang tìm kiếm...");
-        alert("Đang tìm kiếm...");
-    }
+        try {
+            const res = await getHistoryCard(user.id);
+            const formatDate = (date) => {
+                return new Date(date).toLocaleDateString('en-CA');
+            };
+            const filtered = res.filter(item => {
+
+                const matchesStatus = status === "" ||
+                    (item.status === "Thành công" && status === "1") ||
+                    (item.status === "Đang xử lí" && status === "2") ||
+                    (item.status === "Không thành công" && status === "3");
+
+                const matchesText = searchText === "" || item.code?.includes(searchText);
+                const matchesText1 = searchText1 === "" || item.serial?.includes(searchText1);
+                const matchesCardType = cardType === "" || item.name === cardType;
+
+                const itemDate = formatDate(item.createdAt);
+                const matchesFromDate = fromDate === "" || itemDate >= formatDate(fromDate);
+                const matchesToDate = toDate === "" || itemDate <= formatDate(toDate);
+                return matchesStatus && matchesText && matchesText1 && matchesCardType && matchesFromDate && matchesToDate;
+            });
+
+            setHistory(filtered);
+        } catch (error) {
+            console.error("Lỗi khi tìm kiếm:", error);
+            alert("Đã xảy ra lỗi khi tìm kiếm.");
+        }
+    };
+
 
     useEffect(() => {
         const fetchHistory = async () => {
@@ -122,7 +172,9 @@ export default function LichSuNapThe() {
                     <input
                         type="text"
                         className="form-control"
-                        placeholder="Thẻ cào"
+                        placeholder="Mã thẻ..."
+                        maxLength={13}
+                        minLength={13}
                         value={searchText}
                         onChange={(e) => setSearchText(e.target.value)}
                     />
@@ -131,17 +183,27 @@ export default function LichSuNapThe() {
                     <input
                         type="text"
                         className="form-control"
-                        placeholder="Mã thẻ, Serial..."
-                        value={searchText}
-                        onChange={(e) => setSearchText(e.target.value)}
+                        placeholder="Serial..."
+                        maxLength={13}
+                        minLength={13}
+                        value={searchText1}
+                        onChange={(e) => setSearchText1(e.target.value)}
                     />
                 </div>
                 <div className="col-md-2">
-                    <select className="form-select" value={cardType} onChange={(e) => setCardType(e.target.value)}>
-                        <option>--Tất cả loại thẻ--</option>
-                        <option>VIETTEL</option>
-                        <option>VINAPHONE</option>
-                        <option>MOBIFONE</option>
+                    <select
+                        className="form-select"
+                        value={cardType}
+                        onChange={(e) => setCardType(e.target.value)}
+                    >
+                        <option value="">--Tất cả loại thẻ--</option>
+                        <option value="VIETTEL">VIETTEL</option>
+                        <option value="VINAPHONE">VINAPHONE</option>
+                        <option value="MOBIFONE">MOBIFONE</option>
+                        <option value="GARENA">GARENA</option>
+                        <option value="ZING">ZING</option>
+                        <option value="VCON">VCON</option>
+                        <option value="GATE">GATE</option>
                     </select>
                 </div>
                 <div className="col-md-2">
@@ -150,6 +212,7 @@ export default function LichSuNapThe() {
                         className="form-control"
                         value={fromDate}
                         onChange={(e) => setFromDate(e.target.value)}
+                        placeholder="from date"
                     />
                 </div>
                 <div className="col-md-2">
@@ -162,10 +225,10 @@ export default function LichSuNapThe() {
                 </div>
                 <div className="col-md-2">
                     <select className="form-select" value={status} onChange={(e) => setStatus(e.target.value)}>
-                        <option>-- Chọn trạng thái --</option>
+                        <option value="">-- Chọn trạng thái --</option>
                         <option value="1">Thành công</option>
                         <option value="2">Đang xử lí</option>
-                        <option value="0">Thất bại</option>
+                        <option value="3">Thất bại</option>
                     </select>
                 </div>
             </div>
@@ -191,11 +254,6 @@ export default function LichSuNapThe() {
                         <th>Thực nhận</th>
                     </tr>
                 </thead>
-                {/* <tr>
-                        <td colSpan="7" className="fw-bold text-start text-dark">
-                            Ngày 25/06/2025
-                        </td>
-                    </tr> */}
                 <tbody>
                     {history.map((item, index, array) => (
                         item.createdAt && item.code && item.name ? (

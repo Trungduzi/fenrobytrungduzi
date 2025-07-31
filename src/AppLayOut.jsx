@@ -5,10 +5,10 @@ import Header from "../components/header.jsx";
 export default function AppLayout() {
     return (
         <>
-            <Header /> {/* Header hiển thị cố định ở trên */}
+            <Header />
             <div className="container mt-4">
                 <div className="row">
-                    <div className="col-md-3">
+                    <div className="col-md-2">
                         <Sidebar />
                     </div>
                     <div className="col-md-9">

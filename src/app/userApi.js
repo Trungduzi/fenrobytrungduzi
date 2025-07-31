@@ -67,7 +67,7 @@ export const createCard = async (infCard) => {
         console.log("Lỗi fetch rồi", e);
         return { status: false, message: "Không thể kết nối tới server." };
     }
-}
+};
 
 export const napCard = async (infCard, infUser) => {
     try {
@@ -87,7 +87,7 @@ export const napCard = async (infCard, infUser) => {
         console.log("Lỗi fetch rồi", e);
         return { status: false, message: "Không thể kết nối tới server111." };
     }
-}
+};
 
 export const getHistory = async (userId) => {
     const res = await fetch("https://nrorealbytrungduzi-production.up.railway.app/api/get-history", {
@@ -97,7 +97,7 @@ export const getHistory = async (userId) => {
     })
     const data = await res.json();
     return data;
-}
+};
 
 export const getHistoryCard = async (userId) => {
     try {
@@ -115,5 +115,21 @@ export const getHistoryCard = async (userId) => {
     } catch (e) {
         console.error("Lỗi getCard:", e.message);
         return { error: "Không thể lấy data" };
+    }
+};
+
+export const resetPassword = async (userId) => {
+    try {
+        const res = await fetch("https://nrorealbytrungduzi-production.up.railway.app/api/reset-password", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ userId }),
+        });
+        const data = await res.json();
+        alert(data.message);
+        return data;
+    } catch (e) {
+        console.error("Lỗi ở userApi:", e);
+        return { error: "Không thể lấy data từ homeController" };
     }
 };
