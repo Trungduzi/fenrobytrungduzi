@@ -17,10 +17,15 @@ export default function DoiMatKhau() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(user.id);
-        const res = await resetPassword(user.id);
-        const data = res.json();
-        console.log(data);
+        console.log(password, newPassword, confirmPassword);
+        const res = await resetPassword({
+            id: user.id,
+            password,
+            newPassword,
+            confirmPassword
+        });
+        // const data = res.json();
+        // console.log(data);
     }
 
     return (

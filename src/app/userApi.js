@@ -1,3 +1,5 @@
+import { use } from "react";
+
 export const getUser = async () => {
     try {
         const res = await fetch('https://nrorealbytrungduzi-production.up.railway.app/api/get-user');
@@ -118,12 +120,13 @@ export const getHistoryCard = async (userId) => {
     }
 };
 
-export const resetPassword = async (userId) => {
+export const resetPassword = async (useData) => {
+    console.log(useData);
     try {
         const res = await fetch("https://nrorealbytrungduzi-production.up.railway.app/api/reset-password", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ userId }),
+            body: JSON.stringify(useData),
         });
         const data = await res.json();
         alert(data.message);
