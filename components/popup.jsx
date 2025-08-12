@@ -11,7 +11,7 @@ export default function HomePage() {
             Swal.fire({
                 title: "Thông báo",
                 html: `
-          <p>💥 Mua vàng ngọc - nhập acc giá cao zalo <b>0339.38.2222</b></p>
+          <p>💥 Mua vàng ngọc - nhập acc giá cao zalo <b>039.887.2286</b></p>
           <p>💥 Mỗi ngày update 40 acc mới !!!! - hệ thống auto 100%</p>
         `,
                 icon: "info",
