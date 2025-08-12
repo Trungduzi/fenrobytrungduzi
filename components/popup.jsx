@@ -20,7 +20,7 @@ export default function HomePage() {
                         <p>💥 Mọi thắc mắc vui lòng liên hệ zalo <b>039.887.2286</b></p>
                     `,
                 confirmButtonText: "Tắt trong 10 phút",
-                cancelButtonText: "Cancel",
+                cancelButtonText: "Đồng ý",
                 showCancelButton: true,
                 customClass: {
                     popup: "my-popup"
