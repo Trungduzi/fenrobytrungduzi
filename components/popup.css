@@ -1,3 +1,11 @@
-.swal2-container {
-    z-index: 99999 !important;
+.swal2-icon.swal2-warning::before {
+    content: "⚠️";
+    /* icon cảnh báo */
+    font-size: 40px;
+    line-height: 1;
+}
+
+.swal2-icon.swal2-warning {
+    border-color: red;
+    color: red;
 }

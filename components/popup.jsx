@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import Swal from "sweetalert2";
+import "./popup.css"
 
 export default function HomePage() {
     useEffect(() => {
@@ -10,7 +11,7 @@ export default function HomePage() {
         if (!hiddenUntil || now > parseInt(hiddenUntil)) {
             Swal.fire({
                 title: "Cảnh báo",
-                icon: "warning",
+                icon: "info",
                 html: `
                         <p>💥 Admin đang trong quá trình xây dựng trang web</p>
                         <p>💥 Hiện tại web chỉ mang chức năng trải nghiệm</p>
