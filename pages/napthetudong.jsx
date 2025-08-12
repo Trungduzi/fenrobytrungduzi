@@ -129,6 +129,11 @@ export default function NapTheTuDong() {
             return;
         }
         const res = await napCard(formData, user);
+        setTimeout(() => {
+            // e.preventDefault();
+            window.location.href = "/nap-the-tu-dong";
+
+        }, 200);
         if (res.status === true) {
             setFormData({
                 type: '',

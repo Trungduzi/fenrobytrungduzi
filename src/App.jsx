@@ -25,6 +25,7 @@ import SectionContainer from '../pages/home/sectionContainer.jsx'
 import Muathecao from '../pages/home/muathecao.jsx';
 import Minigame from '../pages/home/minigame.jsx';
 import DoiMatKhau from '../pages/doimatkhau.jsx';
+import PopUp from '../components/popup.jsx';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
 
         <Route path="/" element={
           <>
+            <PopUp />
             <Header />
             <Slide />
             <SectionContainer title="DỊCH VỤ NỔI BẬT">
