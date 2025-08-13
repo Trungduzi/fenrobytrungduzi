@@ -121,7 +121,7 @@ export const getHistoryCard = async (userId) => {
 };
 
 export const resetPassword = async (useData) => {
-    console.log(useData);
+    // console.log(useData);
     try {
         const res = await fetch("https://nrorealbytrungduzi-production.up.railway.app/api/reset-password", {
             method: "POST",
@@ -129,6 +129,7 @@ export const resetPassword = async (useData) => {
             body: JSON.stringify(useData),
         });
         const data = await res.json();
+        console.log(data);
         alert(data.message);
         return data;
     } catch (e) {
