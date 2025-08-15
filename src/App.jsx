@@ -26,13 +26,16 @@ import Muathecao from '../pages/home/muathecao.jsx';
 import Minigame from '../pages/home/minigame.jsx';
 import DoiMatKhau from '../pages/doimatkhau.jsx';
 import PopUp from '../components/popup.jsx';
+import Tamthoi from '../components/tamthoi.jsx';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/admin" element={
-          <> <Admin />
+          <>
+            <Tamthoi />
+            <Admin />
           </>}
         />
 
@@ -45,7 +48,7 @@ function App() {
             <SectionContainer title="DỊCH VỤ NỔI BẬT">
               <Muathecao />
             </SectionContainer>
-            <SectionContainer title="DỊCH VỤ MIN GAME">
+            <SectionContainer title="DỊCH VỤ MINI GAME">
               <Minigame />
             </SectionContainer>
           </>}
@@ -67,6 +70,11 @@ function App() {
           </>}
         />
 
+        <Route path="/Tamthoi" element={
+          <>
+            <Tamthoi />
+          </>}
+        />
 
         <Route element={<AppLayOut />}>
           <Route path="thong-tin-tai-khoan" element={<ThongTinTaiKhoan />} />

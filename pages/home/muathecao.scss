@@ -1,0 +1,176 @@
+/* Nền tối + ảnh nền mờ (tùy chọn) */
+.minigame-section {
+    padding: 40px 0 60px;
+    background: #0b0b0d;
+    min-height: 100vh;
+    color: #e9edf1;
+
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 16px;
+    }
+}
+
+/* Tiêu đề */
+.section-title {
+    text-align: center;
+    margin: 0 0 28px;
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+
+    &::after {
+        content: "";
+        display: block;
+        width: 120px;
+        height: 4px;
+        margin: 12px auto 0;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #35e0ff, #00ffa4);
+    }
+}
+
+/* Lưới card */
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 22px;
+}
+
+/* Card */
+.game-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+
+    &:hover {
+        transform: translateY(-4px);
+        border-color: rgba(255, 255, 255, 0.5);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.6);
+    }
+
+    .thumb1 {
+        aspect-ratio: 16/9;
+
+        background: #111;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+    }
+
+    .title {
+        margin: 12px 12px 6px;
+        font-weight: 800;
+        color: #ffd54a;
+        /* vàng đậm */
+        text-transform: uppercase;
+        line-height: 1.2;
+        font-size: 18px;
+    }
+
+    .meta {
+        margin: 0 12px 8px;
+
+        .plays {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+    }
+
+    .prices {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        margin: 0 12px 15px;
+        justify-content: center;
+
+        .price {
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 14px;
+            border: 2px solid #111;
+            // color: white;
+
+            &.old {
+                text-decoration: line-through;
+                background: #0e3510;
+                border-color: #0fae29;
+                color: white;
+            }
+
+            &.new {
+                background: #330707;
+                color: #ffebee;
+                border-color: #ff2a2a;
+            }
+        }
+    }
+
+    .buy-btn {
+        margin: 0 12px 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: calc(100% - 24px);
+        height: 46px;
+        border-radius: 12px;
+        border: 3px solid #1e8f00;
+        background: #ffe24a;
+        color: #1a1a1a;
+        font-weight: 900;
+        letter-spacing: 1px;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+        box-shadow:
+            0 0 0 2px #ffd400 inset,
+            0 0 14px rgba(255, 234, 0, 0.7);
+        cursor: pointer;
+        transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+
+        &:hover {
+            transform: translateY(-1px);
+            filter: brightness(1.03);
+            box-shadow:
+                0 0 0 2px #ffd400 inset,
+                0 0 18px rgba(255, 239, 0, 0.95);
+        }
+
+        &:active {
+            transform: translateY(1px);
+            box-shadow:
+                0 0 0 2px #ffd400 inset,
+                0 0 10px rgba(255, 239, 0, 0.7);
+        }
+    }
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+    .section-title {
+        font-size: 28px;
+    }
+
+    .game-card .title {
+        font-size: 16px;
+    }
+
+    .game-card .buy-btn {
+        height: 44px;
+        font-size: 15px;
+    }
+}
