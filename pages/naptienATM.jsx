@@ -27,7 +27,7 @@ export default function NapTienATM() {
             <div className="row align-items-start my-4">
                 <div className="col-md-4 text-center">
                     <img
-                        src="../public/qr-vcb.jpg"
+                        src="/qr-vcb.jpg"
                         alt="QR Code"
                         className="img-fluid"
                         style={{ maxWidth: "240px", border: "1px solid #ccc", borderRadius: "8px" }}
