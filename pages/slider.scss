@@ -11,8 +11,10 @@ a {
     padding: 20px;
     display: flex;
     flex-direction: column;
+    position: relative;
     gap: 20px;
     color: white;
+    top: 20vh;
 }
 
 /* Flex 2 cột */
@@ -184,4 +186,21 @@ a {
     height: 100%;
     text-align: center;
     left: 91%;
+}
+
+
+
+
+
+
+
+
+
+
+
+@media(max-width: 800px) {
+    .container-main {
+
+        top: 12vh;
+    }
 }

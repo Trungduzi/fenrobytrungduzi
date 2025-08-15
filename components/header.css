@@ -37,6 +37,10 @@ li {
     background-color: var(--header-color);
     border-bottom-style: solid;
     border-bottom-width: 0.5px;
+    position: fixed;
+    width: 100vw;
+    top: 0;
+    z-index: 10;
 }
 
 .header-container {
@@ -390,6 +394,16 @@ li {
     color: white;
 }
 
+.nav-sub-1mobile:hover {
+    text-decoration: underline;
+    cursor: context-menu;
+}
+
+.nav-sub-2mobile:hover {
+    text-decoration: underline;
+    cursor: context-menu;
+}
+
 .show-a {
     padding-top: 10px;
 }
@@ -470,5 +484,32 @@ li {
 
     .header-menumobile {
         display: block;
+    }
+}
+
+
+@media (max-width: 800px) {
+    .header {
+        position: fixed;
+        width: 100vw;
+        height: 12vh;
+        top: 0;
+        z-index: 10;
+    }
+
+    .header-container {
+        height: 12vh;
+    }
+
+    .header-menumobile {
+        top: 12vh;
+    }
+
+    .header-logo {
+        height: 8 0%;
+    }
+
+    .logo-fix {
+        height: 100%;
     }
 }
