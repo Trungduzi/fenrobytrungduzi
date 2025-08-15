@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { createUser } from '../src/app/userApi.js';
 import '@/index.css';
+import "./signin.scss";
 
 export default function Signin() {
     const location = useLocation();
@@ -54,7 +55,7 @@ export default function Signin() {
     };
 
     return (
-        <div className="Signin" style={{ position: "relative", top: "12vh", height: "200vh" }}>
+        <div className="Signin">
             <form onSubmit={handleSubmit}>
                 <div className="container">
                     <div className="row">
@@ -146,7 +147,7 @@ export default function Signin() {
 
                         </div>
 
-                        <button type="submit" className="btn btn-primary mt-3">
+                        <button type="submit" className="btn btn-primary mt-3 col-md-6" >
                             Sign in
                         </button>
                     </div>

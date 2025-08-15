@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { login } from '../src/app/userApi.js';
+import "./signin.scss"
 
 export default function Login() {
 
@@ -36,12 +37,12 @@ export default function Login() {
     };
 
     return (
-        <div className="bg-gray-100 min-h-screen flex items-center justify-center" style={{ position: "relative", top: "12vh", height: "200vh" }}>
+        <div className="Login bg-gray-100 min-h-screen flex items-center justify-center">
             <div className="w-full max-w-xs">
                 <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-                            Email
+                            Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </label>
                         <input
                             type="text"
@@ -56,7 +57,7 @@ export default function Login() {
 
                     <div className="mb-6">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-                            Password
+                            Password:&nbsp;&nbsp;&nbsp;
                         </label>
                         <input
                             type="password"
@@ -70,9 +71,10 @@ export default function Login() {
                     </div>
 
                     <div className="flex items-center justify-between">
+                        <p></p>
                         <button
                             type="submit"
-                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" style={{ backgroundColor: "blue" }}
                         >
                             Sign In
                         </button>
