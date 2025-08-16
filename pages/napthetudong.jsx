@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { napCard, getHistory } from "../src/app/userApi.js";
 import { useNavigate } from 'react-router-dom';
+import "./napthetudong.scss"
 
 
 export default function NapTheTuDong() {
@@ -164,10 +165,10 @@ export default function NapTheTuDong() {
 
     return (
         <>
-            <div className="container mt-4">
+            <div className="container">
                 <h2 className="border-bottom border-3 border-danger pb-2 fw-bold">NẠP THẺ</h2>
 
-                <form onSubmit={handleSubmit} className="mt-4">
+                <form onSubmit={handleSubmit} className="mt-1">
                     <div className="mb-3">
                         <label className="form-label">Loại thẻ:</label>
                         <select
@@ -277,37 +278,43 @@ export default function NapTheTuDong() {
                 </form>
 
                 {/* <div className="mt-5 fw-bold fs-5">Ngày 25/06/2025</div> */}
-
-                <table className="table table-bordered table-striped mt-3">
-                    <thead className="table-light">
-                        <tr>
-                            <th>STT</th>
-                            <th>Thời gian</th>
-                            <th>Nhà mạng</th>
-                            <th>Mã thẻ</th>
-                            <th>Serial</th>
-                            <th>Mệnh giá</th>
-                            <th>Kết quả</th>
-                            <th>Thực nhận</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {historyUser.map((item, index, array) => (
-                            <tr key={index}>
-                                <td>{array.length - index}</td>
-                                <td>{formatDateTime(item.createdAt)}</td>
-                                <td>{item.name}</td>
-                                <td>{item.code}</td>
-                                <td>{item.serial}</td>
-                                <td>{item.price}</td>
-                                <td>
-                                    <span className="badge bg-danger">{item.status}</span>
-                                </td>
-                                <td>{item.receive}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+                <div className="mt-4">
+                    <h4 className="fw-bold col-red mb-3">Lịch sử nạp thẻ</h4>
+                    <div className="history-wrapper">
+                        <div className="history-table">
+                            <table className="table table-bordered table-striped">
+                                <thead className="table-light">
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Thời gian</th>
+                                        <th>Nhà mạng</th>
+                                        <th>Mã thẻ</th>
+                                        <th>Serial</th>
+                                        <th>Mệnh giá</th>
+                                        <th>Kết quả</th>
+                                        <th>Thực nhận</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {historyUser.map((item, index, array) => (
+                                        <tr key={index}>
+                                            <td>{array.length - index}</td>
+                                            <td>{formatDateTime(item.createdAt)}</td>
+                                            <td>{item.name}</td>
+                                            <td>{item.code}</td>
+                                            <td>{item.serial}</td>
+                                            <td>{item.price}</td>
+                                            <td>
+                                                <span className="badge bg-danger">{item.status}</span>
+                                            </td>
+                                            <td>{item.receive}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </>
     )

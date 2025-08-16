@@ -55,7 +55,7 @@
     color: red !important;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 800px) {
     .infoTable th {
         width: 150px;
     }
@@ -67,4 +67,17 @@
     .menuList li a {
         font-size: 13px;
     }
+
+    // .menuList {
+    //     display: none;
+    // }
+
+    // .sectionTitle {
+    //     font-size: 30px;
+    //     // padding-left: 2vw;
+    // }
+
+    // .sidebarSection {
+    //     display: inline-block;
+    // }
 }

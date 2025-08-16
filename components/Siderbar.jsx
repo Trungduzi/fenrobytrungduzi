@@ -1,5 +1,5 @@
-import styles from "./Siderbar.module.css";
 import { NavLink } from "react-router-dom";
+import "./sliderbar.scss";
 
 const transactionMenuItems = [
     { label: "Dịch vụ đã mua", link: "/dich-vu-da-mua" },
@@ -18,29 +18,29 @@ const transactionMenuItems = [
 export default function Sidebar() {
     return (
         <>
-            <div className={styles.sidebarSection}>
-                <div className={styles.sectionTitle}>MENU TÀI KHOẢN</div>
-                <ul className={styles.menuList}>
+            <div className="sidebarSection">
+                <div className="sectionTitle">MENU TÀI KHOẢN</div>
+                <ul className="menuList">
                     <li>
-                        <NavLink to="/thong-tin-tai-khoan" className={styles.menuLink}>
-                            <span className={styles.dot}></span> Thông tin tài khoản
+                        <NavLink to="/thong-tin-tai-khoan" className="menuLink">
+                            <span className="dot"></span> Thông tin tài khoản
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/lich-su-giao-dich" className={styles.menuLink}>
-                            <span className={styles.dot}></span> Lịch sử giao dịch
+                        <NavLink to="/lich-su-giao-dich" className="menuLink">
+                            <span className="dot"></span> Lịch sử giao dịch
                         </NavLink>
                     </li>
                 </ul>
             </div>
 
-            <div className={styles.sidebarSection}>
-                <div className={styles.sectionTitle}>MENU GIAO DỊCH</div>
-                <ul className={styles.menuList}>
+            <div className="sidebarSection">
+                <div className="sectionTitle">MENU GIAO DỊCH</div>
+                <ul className="menuList">
                     {transactionMenuItems.map((item, index) => (
                         <li key={index}>
-                            <NavLink to={item.link} className={styles.menuLink}>
-                                <span className={styles.dot}></span> {item.label}
+                            <NavLink to={item.link} className="menuLink">
+                                <span className="dot"></span> {item.label}
                             </NavLink>
                         </li>
                     ))}

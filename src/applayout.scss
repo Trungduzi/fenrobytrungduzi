@@ -1,0 +1,45 @@
+.app-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Khu vực dưới header */
+.main-layout {
+    display: flex;
+    flex: 1;
+    margin-top: 70px;
+    /* chiều cao Header */
+}
+
+/* Sidebar */
+.sidebar {
+    flex: 0 0 250px;
+    /* luôn chiếm 250px */
+    max-width: 250px;
+    background: #f8f9fa;
+    min-height: calc(100vh - 70px);
+    /* full chiều cao trừ header */
+    overflow-y: auto;
+}
+
+/* Content */
+.content {
+    flex: 1;
+    padding: 20px;
+    overflow-x: hidden;
+    /* tránh tràn ngang */
+}
+
+/* Khi mobile thì sidebar xuống dưới hoặc ẩn */
+@media (max-width: 768px) {
+    .main-layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        max-width: 100%;
+        flex: none;
+        min-height: auto;
+    }
+}

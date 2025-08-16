@@ -6,14 +6,26 @@ export default function AppLayout() {
     return (
         <>
             <Header />
-            <div className="container mt-4" style={{ position: "absolute", top: "18vh" }}>
-                <div className="row">
-                    <div className="col-md-2">
-                        <Sidebar />
-                    </div>
-                    <div className="col-md-9">
-                        <Outlet />
-                    </div>
+            <div
+                className="d-flex"
+                style={{
+                    position: "absolute",
+                    top: "18vh",
+                    left: 0,
+                    right: 0,
+                    minHeight: "82vh",
+                    overflowX: "auto",
+                    flexWrap: "nowrap"
+                }}
+            >
+                {/* Sidebar */}
+                <div style={{ flex: "0 0 220px", minWidth: "200px" }}>
+                    <Sidebar />
+                </div>
+
+                {/* Nội dung nạp thẻ */}
+                <div style={{ flex: "1 1 auto", minWidth: "300px" }} className="p-3">
+                    <Outlet />
                 </div>
             </div>
         </>
