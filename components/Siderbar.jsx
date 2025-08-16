@@ -17,35 +17,40 @@ const transactionMenuItems = [
 
 export default function Sidebar() {
     return (
-        <>
-            <div className="sidebarSection">
-                <div className="sectionTitle">MENU TÀI KHOẢN</div>
-                <ul className="menuList">
-                    <li>
-                        <NavLink to="/thong-tin-tai-khoan" className="menuLink">
-                            <span className="dot"></span> Thông tin tài khoản
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/lich-su-giao-dich" className="menuLink">
-                            <span className="dot"></span> Lịch sử giao dịch
-                        </NavLink>
-                    </li>
-                </ul>
-            </div>
-
-            <div className="sidebarSection">
-                <div className="sectionTitle">MENU GIAO DỊCH</div>
-                <ul className="menuList">
-                    {transactionMenuItems.map((item, index) => (
-                        <li key={index}>
-                            <NavLink to={item.link} className="menuLink">
-                                <span className="dot"></span> {item.label}
+        <div className="sidebar-container">
+            {/* Gộp 2 khối menu vào 1 hàng ngang */}
+            <div className="sidebar-row">
+                {/* MENU TÀI KHOẢN */}
+                <div className="sidebarSection">
+                    <div className="sectionTitle">MENU TÀI KHOẢN</div>
+                    <ul className="menuList">
+                        <li>
+                            <NavLink to="/thong-tin-tai-khoan" className="menuLink">
+                                <span className="dot"></span> Thông tin tài khoản
                             </NavLink>
                         </li>
-                    ))}
-                </ul>
+                        <li>
+                            <NavLink to="/lich-su-giao-dich" className="menuLink">
+                                <span className="dot"></span> Lịch sử giao dịch
+                            </NavLink>
+                        </li>
+                    </ul>
+                </div>
+
+                {/* MENU GIAO DỊCH */}
+                <div className="sidebarSection">
+                    <div className="sectionTitle">MENU GIAO DỊCH</div>
+                    <ul className="menuList">
+                        {transactionMenuItems.map((item, index) => (
+                            <li key={index}>
+                                <NavLink to={item.link} className="menuLink">
+                                    <span className="dot"></span> {item.label}
+                                </NavLink>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             </div>
-        </>
+        </div>
     );
 }

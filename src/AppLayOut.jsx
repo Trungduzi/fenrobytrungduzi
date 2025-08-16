@@ -7,27 +7,20 @@ export default function AppLayout() {
         <>
             <Header />
             <div
-                className="d-flex"
                 style={{
-                    position: "absolute",
+                    position: "relative",
                     top: "18vh",
-                    left: 0,
-                    right: 0,
-                    minHeight: "82vh",
-                    overflowX: "auto",
-                    flexWrap: "nowrap"
+                    display: "flex",       // <-- thêm dòng này để hiển thị cùng hàng ngang
+                    gap: "20px",          // khoảng cách giữa sidebar và content, tuỳ chỉnh
+                    minHeight: "80vh",    // tuỳ chọn, cho chiều cao
                 }}
             >
-                {/* Sidebar */}
-                <div style={{ flex: "0 0 220px", minWidth: "200px" }}>
-                    <Sidebar />
-                </div>
-
-                {/* Nội dung nạp thẻ */}
-                <div style={{ flex: "1 1 auto", minWidth: "300px" }} className="p-3">
-                    <Outlet />
-                </div>
+                {/* Sidebar bên trái */}
+                <Sidebar />
+                <Outlet /> {/* Chứa trang "nap-the-tu-dong" */}
             </div>
         </>
     );
 }
+
+

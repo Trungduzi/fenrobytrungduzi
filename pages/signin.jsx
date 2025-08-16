@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { createUser } from '../src/app/userApi.js';
 import '@/index.css';
-import "./signin.scss";
-
 export default function Signin() {
     const location = useLocation();
     const navigate = useNavigate();
