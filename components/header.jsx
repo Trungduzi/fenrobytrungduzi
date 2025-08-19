@@ -150,10 +150,10 @@ export default function Header() {
                                 <>
                                     <li className="user-onmenu show-loginmobile">
                                         <Link to="/thong-tin-tai-khoan" className="user-signinmobile">
-                                            <i className="fa-solid fa-user user-icon blackc"></i>
-                                            <span className="username-text blackc">{user.username}</span>
-                                            <span className="user-money blackc">- {Math.floor(parseFloat(user.dollar))}</span>
-                                            <span className="dollar blackc">$</span>
+                                            <i className="fa-solid fa-user user-icon"></i>
+                                            <span className="username-text">{user.username}</span>
+                                            <span className="user-money">- {Math.floor(parseFloat(user.dollar))}</span>
+                                            <span className="dollar">$</span>
                                         </Link>
                                     </li>
                                     <li className="logout-menumobile">
