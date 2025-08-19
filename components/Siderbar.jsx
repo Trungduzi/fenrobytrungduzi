@@ -18,8 +18,8 @@ const transactionMenuItems = [
 
 export default function Sidebar() {
 
-    const [show, setShow] = useState(false);
-    const [show1, setShow1] = useState(false);
+    const [show, setShow] = useState(true);
+    const [show1, setShow1] = useState(true);
     const handleClick = () => {
         setShow(!show);
     }
