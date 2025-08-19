@@ -18,11 +18,9 @@ const transactionMenuItems = [
 export default function Sidebar() {
     return (
         <div className="sidebar-container">
-            {/* Gộp 2 khối menu vào 1 hàng ngang */}
             <div className="sidebar-row">
-                {/* MENU TÀI KHOẢN */}
                 <div className="sidebarSection">
-                    <div className="sectionTitle">MENU TÀI KHOẢN</div>
+                    <div className="sectionTitle">MENU TÀI KHOẢN ⇩</div>
                     <ul className="menuList">
                         <li>
                             <NavLink to="/thong-tin-tai-khoan" className="menuLink">
@@ -37,9 +35,10 @@ export default function Sidebar() {
                     </ul>
                 </div>
 
-                {/* MENU GIAO DỊCH */}
+
+
                 <div className="sidebarSection">
-                    <div className="sectionTitle">MENU GIAO DỊCH</div>
+                    <div className="sectionTitle">MENU GIAO DỊCH ⇩</div>
                     <ul className="menuList">
                         {transactionMenuItems.map((item, index) => (
                             <li key={index}>

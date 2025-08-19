@@ -68,16 +68,22 @@
         font-size: 13px;
     }
 
-    // .menuList {
-    //     display: none;
-    // }
+    .menuList {
+        display: none;
+    }
 
-    // .sectionTitle {
-    //     font-size: 30px;
-    //     // padding-left: 2vw;
-    // }
+    .sectionTitle {
+        font-size: 20px;
+    }
 
-    // .sidebarSection {
-    //     display: inline-block;
-    // }
+    .sidebar-row {
+        display: flex;
+    }
+
+    .sidebarSection {
+        display: block;
+        flex-grow: 1;
+        position: relative;
+        // text-align: center;
+    }
 }

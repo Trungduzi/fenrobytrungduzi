@@ -8,7 +8,18 @@ export default function LichSuTrungNick() {
     const [fromDate, setFromDate] = useState("");
     const [toDate, setToDate] = useState("");
 
-    const fakeData = []; // bạn có thể thay bằng dữ liệu thật
+    const fakeData = [
+        {
+            time: "10:22:23 18/08/2008",
+            id: 11112123,
+            game: "172123",
+            account: "91.231.910.000",
+            price: "1.000.000",
+            content: "mua thẻ",
+            status: "Thành công",
+        }
+
+    ]; // bạn có thể thay bằng dữ liệu thật
 
     return (
         <div>
@@ -38,19 +49,20 @@ export default function LichSuTrungNick() {
                                 <td>{item.time}</td>
                                 <td>{item.id}</td>
                                 <td>{item.game}</td>
-                                <td>{item.account}</td>
                                 <td>{item.price}</td>
+                                <td>{item.account}</td>
+                                <td>{item.content}</td>
                                 <td>
                                     <span
-                                        className={`badge ${item.status === "Thành công" ? "bg-success" : "bg-danger"
+                                        className={`badge ${item.status === "Thành công" ? "bg-danger" : "bg-success"
                                             }`}
                                     >
                                         {item.status}
                                     </span>
                                 </td>
-                                <td>
+                                {/* <td>
                                     <button className="btn btn-sm btn-primary">Chi tiết</button>
-                                </td>
+                                </td> */}
                             </tr>
                         ))
                     )}

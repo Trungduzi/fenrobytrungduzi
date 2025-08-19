@@ -50,7 +50,7 @@ const styles = {
     },
     table: {
         width: '100%',
-        borderCollapse: 'collapse',
+        // borderCollapse: 'collapse',
         minWidth: 800,
     },
     thead: {

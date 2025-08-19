@@ -1,0 +1,25 @@
+@media (max-width: 800px) {
+    .layoutTotal {
+        flex-direction: column;
+    }
+}
+
+.layoutTotal {
+    max-width: 97vw;
+}
+
+.layout1 {
+    min-width: 180px;
+    position: relative;
+    left: 10px;
+}
+
+.layout2 {
+    min-width: 170px;
+    flex-grow: 8;
+
+}
+
+.layoutNull {
+    flex-grow: 1;
+}
