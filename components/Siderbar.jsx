@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import "./sliderbar.scss";
+import { useState } from "react";
 
 const transactionMenuItems = [
     { label: "Dịch vụ đã mua", link: "/dich-vu-da-mua" },
@@ -16,38 +17,63 @@ const transactionMenuItems = [
 ];
 
 export default function Sidebar() {
+
+    const [show, setShow] = useState(false);
+    const [show1, setShow1] = useState(false);
+    const handleClick = () => {
+        setShow(!show);
+    }
+
+    const handleClick1 = () => {
+        setShow1(!show1);
+    }
+
+
+
     return (
         <div className="sidebar-container">
             <div className="sidebar-row">
                 <div className="sidebarSection">
-                    <div className="sectionTitle">MENU TÀI KHOẢN ⇩</div>
-                    <ul className="menuList">
-                        <li>
-                            <NavLink to="/thong-tin-tai-khoan" className="menuLink">
-                                <span className="dot"></span> Thông tin tài khoản
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/lich-su-giao-dich" className="menuLink">
-                                <span className="dot"></span> Lịch sử giao dịch
-                            </NavLink>
-                        </li>
-                    </ul>
+                    <div className="sectionTitle" onClick={handleClick}>MENU TÀI KHOẢN ⇩</div>
+                    {show ? (
+                        <>
+                            <ul className="menuList">
+                                <li>
+                                    <NavLink to="/thong-tin-tai-khoan" className="menuLink">
+                                        <span className="dot"></span> Thông tin tài khoản
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/lich-su-giao-dich" className="menuLink">
+                                        <span className="dot"></span> Lịch sử giao dịch
+                                    </NavLink>
+                                </li>
+                            </ul>
+                        </>
+                    ) : (
+                        <></>
+                    )}
                 </div>
 
 
 
                 <div className="sidebarSection">
-                    <div className="sectionTitle">MENU GIAO DỊCH ⇩</div>
-                    <ul className="menuList">
-                        {transactionMenuItems.map((item, index) => (
-                            <li key={index}>
-                                <NavLink to={item.link} className="menuLink">
-                                    <span className="dot"></span> {item.label}
-                                </NavLink>
-                            </li>
-                        ))}
-                    </ul>
+                    <div className="sectionTitle" onClick={handleClick1}>MENU GIAO DỊCH ⇩</div>
+                    {show1 ? (
+                        <>
+                            <ul className="menuList">
+                                {transactionMenuItems.map((item, index) => (
+                                    <li key={index}>
+                                        <NavLink to={item.link} className="menuLink">
+                                            <span className="dot"></span> {item.label}
+                                        </NavLink>
+                                    </li>
+                                ))}
+                            </ul>
+                        </>
+                    ) : (
+                        <></>
+                    )}
                 </div>
             </div>
         </div>

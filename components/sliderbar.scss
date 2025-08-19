@@ -86,4 +86,8 @@
         position: relative;
         // text-align: center;
     }
+
+    .sidebarSection:hover .menuList {
+        display: block;
+    }
 }
