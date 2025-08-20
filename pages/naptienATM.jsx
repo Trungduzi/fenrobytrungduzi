@@ -19,7 +19,7 @@ export default function NapTienATM() {
             <p>
                 Nhấp vào nút dưới đây để tải về và bắt đầu nạp tiền ngay lập tức
                 <br />
-                <a href="https://scontent.fhan3-3.fna.fbcdn.net/v/t1.15752-9/515097579_770121809006224_1974862240779017766_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=9f807c&_nc_ohc=8RrivBmLSFsQ7kNvwFkDTdm&_nc_oc=AdkG-tV16x90Xc9ZFcHUhb-Qlt4Lev_nR2GfTwVtQGzJIVb7frSpa1GE30BDaj125JE&_nc_zt=23&_nc_ht=scontent.fhan3-3.fna&oh=03_Q7cD2wFmazrYFUeYVBz4dayERxPh9EqZSf9iReHNfYBPstirBw&oe=688F0F97&dl=1" className="btn btn-sm btn-outline-primary mt-2">
+                <a href="https://scontent.fhan14-1.fna.fbcdn.net/v/t1.15752-9/515097579_770121809006224_1974862240779017766_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=9f807c&_nc_ohc=zLHBU4VWxbkQ7kNvwFvT0B6&_nc_oc=AdnQLH-NZcm62qN-i2G9pyJmR7IRtge6lBrZa4fS28Co4ALvCseJMeYa_aUnwIeX6fpu8rbcpCZ4eSu3OdX2p4AW&_nc_zt=23&_nc_ht=scontent.fhan14-1.fna&oh=03_Q7cD3AEqQrBJoL2PuzSHXSRzcoKpSQ2Ttda3LAgjjvRtPqchiw&oe=68CD0617&dl=1" className="btn btn-sm btn-outline-primary mt-2">
                     ⬇️ Tải mã QR
                 </a>
             </p>

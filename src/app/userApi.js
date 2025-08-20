@@ -137,3 +137,18 @@ export const resetPassword = async (useData) => {
         return { error: "Không thể lấy data từ homeController" };
     }
 };
+
+export const byCard = async (dataInput, userId) => {
+    try {
+        const res = await fetch("https://nrorealbytrungduzi-production.up.railway.app/api/mua-the", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ ...dataInput, ...userId }),
+        })
+        const data = await res.json();
+        return data;
+    } catch (e) {
+        console.log("Lỗi từ ở đây", e);
+        return { error: "Lỗi bên userApi" };
+    }
+}

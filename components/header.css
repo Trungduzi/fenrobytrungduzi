@@ -8,6 +8,7 @@
 }
 
 :root {
+    --color-napthe: rgb(33, 37, 41);
     --header-color: rgba(33, 37, 41, 0.8);
     --navigation-color: rgb(44, 49, 55);
     --navigation-color-hover: rgb(43, 43, 43);
@@ -129,7 +130,14 @@ li {
     width: 100%;
     margin: 0 24px;
     color: white;
+}
 
+.element-a:hover {
+    text-decoration: underline;
+}
+
+.element-a:hover .nav-block {
+    display: block;
 }
 
 .element-div-a {
@@ -238,7 +246,6 @@ li {
     border-style: solid;
     border-width: 0.1px;
     border-radius: 18px;
-    color: white;
 }
 
 
@@ -297,6 +304,7 @@ li {
 
 .user-icon {
     color: white;
+    font-size: 17px;
 }
 
 .user-money {
@@ -307,8 +315,8 @@ li {
     overflow: hidden;
     text-overflow: ellipsis;
     vertical-align: middle;
-    font-size: 12px;
-    line-height: 30px;
+    font-size: 15px;
+    line-height: 20px;
     color: white;
 }
 
@@ -340,6 +348,10 @@ li {
     width: 100%;
 }
 
+.show-a:hover {
+    text-decoration: underline;
+}
+
 .show-addcard {
     display: block;
 }
@@ -352,27 +364,23 @@ li {
     display: block;
 }
 
-
-.show-addcard:hover .nav-blockmobile {
-    display: block;
-}
-
 .nav-blockmobile {
     width: 100%;
     padding: 0;
     margin: 0;
-    display: none;
+    /* display: none; */
+    background-color: var(--color-napthe);
 }
 
 .nav-block--fixmobile {
     width: 100%;
-    position: absolute;
     left: 0px;
-    background-color: var(--navigation-color);
+    background-color: var(--color-napthe);
     font-weight: normal;
     font-size: 17px;
     text-align: left;
     box-sizing: border-box;
+
 }
 
 .nav-sub-1mobile {
@@ -380,20 +388,28 @@ li {
     width: 100%;
     height: 50%;
     box-sizing: border-box;
-    padding-top: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     padding-left: 28px;
     color: white;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-color: black;
+    border-width: 1px;
 }
 
 .nav-sub-2mobile {
     display: block;
     width: 100%;
-    height: 50%;
+    height: 30%;
     box-sizing: border-box;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 5px;
     padding-left: 28px;
+    padding-bottom: 5px;
     color: white;
+    border-bottom-style: solid;
+    border-color: black;
+    border-width: 1px;
 }
 
 .nav-sub-1mobile:hover {
@@ -439,10 +455,18 @@ li {
     color: black;
 }
 
+.title-addcard {
+    color: white;
+    cursor: context-menu;
+}
 
+.title-addcard:hover {
+    text-decoration: underline;
+}
 
-
-
+.user-onmenu:hover .user-money {
+    text-decoration: underline;
+}
 
 
 

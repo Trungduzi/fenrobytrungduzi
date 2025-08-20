@@ -6,6 +6,16 @@ export default function Header() {
     const [user, setUser] = useState(null);
     const [showMenu, setShowMenu] = useState(false);
     const navigate = useNavigate();
+    const [show, setShow] = useState(false);
+    const [show1, setShow1] = useState(false);
+
+    const handleClick = () => {
+        setShow(!show);
+    }
+
+    const handleClick1 = () => {
+        setShow1(!show1);
+    }
 
     useEffect(() => {
         const storedUser = localStorage.getItem("user");
@@ -49,19 +59,27 @@ export default function Header() {
                         </li>
                         <li className="navigation-element navigation-special">
                             <div className="element-a">
-                                <a href="#" className="element-div-a">Nạp tiền</a>
-                                <div className="nav-block">
-                                    <div className="nav-block--fix">
-                                        <ul className="nav-sub">
-                                            <li>
-                                                <a onClick={() => handleRedirect("/nap-the-tu-dong")} className="nav-sub-1">Nạp thẻ cào</a>
-                                            </li>
-                                            <li>
-                                                <a onClick={() => handleRedirect("/nap-tien-ATM")} className="nav-sub-2">Nạp ATM tự động</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                <a href="#" className="element-div-a" onClick={handleClick}>Nạp tiền</a>
+                                {show ? (
+                                    <>
+                                        <div className="nav-block">
+                                            <div className="nav-block--fix">
+                                                <ul className="nav-sub">
+                                                    <li>
+                                                        <a onClick={() => handleRedirect("/nap-the-tu-dong")} className="nav-sub-1">Nạp thẻ cào</a>
+                                                    </li>
+                                                    <li>
+                                                        <a onClick={() => handleRedirect("/nap-tien-ATM")} className="nav-sub-2">Nạp ATM tự động</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <>
+                                    </>
+                                )
+                                }
                             </div>
                         </li>
                         <li className="navigation-element">
@@ -86,7 +104,7 @@ export default function Header() {
                                         <i className="fa-solid fa-user user-icon"></i>
                                         <span className="username-text">{user.username}</span>
                                         <span className="user-money">- {Math.floor(parseFloat(user.dollar))}</span>
-                                        <span className="dollar">$</span>
+                                        <span className="dollar"></span>
                                     </Link>
                                 </li>
                                 <li className="nav-right-li">
@@ -124,19 +142,25 @@ export default function Header() {
                             </li>
                             <li className="show-addcard">
                                 <div className="show-addcard-div">
-                                    <a href="#" className="title-addcard">Nạp tiền</a>
-                                    <div className="nav-blockmobile">
-                                        <div className="nav-block--fixmobile">
-                                            <ul className="nav-sub">
-                                                <li>
-                                                    <a onClick={() => handleRedirect("/nap-the-tu-dong")} className="nav-sub-1mobile">Nạp thẻ cào</a>
-                                                </li>
-                                                <li>
-                                                    <a onClick={() => handleRedirect("/nap-tien-ATM")} className="nav-sub-2mobile">Nạp ATM tự động</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                                    <div className="title-addcard" onClick={handleClick1}>Nạp tiền ⇩</div>
+                                    {show1 ? (
+                                        <>
+                                            <div className="nav-blockmobile">
+                                                <div className="nav-block--fixmobile">
+                                                    <ul className="nav-sub">
+                                                        <li>
+                                                            <a onClick={() => handleRedirect("/nap-the-tu-dong")} className="nav-sub-1mobile">Nạp thẻ cào</a>
+                                                        </li>
+                                                        <li>
+                                                            <a onClick={() => handleRedirect("/nap-tien-ATM")} className="nav-sub-2mobile">Nạp ATM tự động</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <></>
+                                    )}
                                 </div>
                             </li>
                             <li className="show-dichvu">

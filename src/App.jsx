@@ -27,6 +27,7 @@ import Minigame from '../pages/home/minigame.jsx';
 import DoiMatKhau from '../pages/doimatkhau.jsx';
 import PopUp from '../components/popup.jsx';
 import Tamthoi from '../components/tamthoi.jsx';
+import Muathe from '../pages/muathe.jsx';
 
 function App() {
   return (
@@ -70,9 +71,10 @@ function App() {
           </>}
         />
 
-        <Route path="/Tamthoi" element={
+        <Route path="/mua-the" element={
           <>
-            <Tamthoi />
+            <Header />
+            <Muathe />
           </>}
         />
 

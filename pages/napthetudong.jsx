@@ -1,82 +1,82 @@
 import React, { useEffect, useState } from 'react';
 import { napCard, getHistory } from "../src/app/userApi.js";
 
-const styles = {
-    container: {
-        padding: '10px',
-        width: '100%',
-        boxSizing: 'border-box',
-        display: 'flex',
-        flexDirection: 'column',
-    },
-    formBox: {
-        width: '100%',
-        maxWidth: 900,
-        backgroundColor: 'white',
-        border: '1px solid #ccc',
-        borderRadius: 4,
-        padding: 10,
-        marginBottom: 30,
-    },
-    heading: {
-        borderBottom: '3px solid red',
-        paddingBottom: '10px',
-        fontWeight: 'bold',
-        marginTop: 0,
-    },
-    formElement: {
-        marginBottom: '10px',
-    },
-    input: {
-        width: '100%',
-        padding: '5px',
-    },
-    button: {
-        width: '100%',
-        backgroundColor: '#00bcd4',
-        color: 'white',
-        padding: '10px',
-        border: 'none',
-        borderRadius: '4px',
-        cursor: 'pointer',
-    },
-    tableWrapper: {
-        marginTop: '30px',
-        overflowX: 'auto',
-        backgroundColor: 'white',
-        border: '1px solid #ddd',
-        borderRadius: 4,
-        padding: '10px',
-    },
-    table: {
-        width: '100%',
-        // borderCollapse: 'collapse',
-        minWidth: 800,
-    },
-    thead: {
-        backgroundColor: '#f9f9f9',
-    },
-    th: {
-        fontWeight: 'bold',
-        padding: '10px',
-        borderBottom: '1px solid #ddd',
-        textAlign: 'left',
-    },
-    td: {
-        padding: '8px 10px',
-        borderBottom: '1px solid #ddd',
-    },
-    badgeFail: {
-        backgroundColor: '#f44336',
-        color: 'white',
-        padding: '3px 8px',
-        borderRadius: '5px',
-        fontSize: '12px',
-        display: 'inline-block',
-    }
-};
 
 export default function NapTheTuDong() {
+    const styles = {
+        container: {
+            padding: '10px',
+            width: '100%',
+            boxSizing: 'border-box',
+            display: 'flex',
+            flexDirection: 'column',
+        },
+        formBox: {
+            width: '100%',
+            maxWidth: 900,
+            backgroundColor: 'white',
+            border: '1px solid #ccc',
+            borderRadius: 4,
+            padding: 10,
+            marginBottom: 30,
+        },
+        heading: {
+            borderBottom: '3px solid red',
+            paddingBottom: '10px',
+            fontWeight: 'bold',
+            marginTop: 0,
+        },
+        formElement: {
+            marginBottom: '10px',
+        },
+        input: {
+            width: '100%',
+            padding: '5px',
+        },
+        button: {
+            width: '100%',
+            backgroundColor: '#00bcd4',
+            color: 'white',
+            padding: '10px',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+        },
+        tableWrapper: {
+            marginTop: '30px',
+            overflowX: 'auto',
+            backgroundColor: 'white',
+            border: '1px solid #ddd',
+            borderRadius: 4,
+            padding: '10px',
+        },
+        table: {
+            width: '100%',
+            // borderCollapse: 'collapse',
+            minWidth: 800,
+        },
+        thead: {
+            backgroundColor: '#f9f9f9',
+        },
+        th: {
+            fontWeight: 'bold',
+            padding: '10px',
+            borderBottom: '1px solid #ddd',
+            textAlign: 'left',
+        },
+        td: {
+            padding: '8px 10px',
+            borderBottom: '1px solid #ddd',
+        },
+        badgeFail: {
+            backgroundColor: '#f44336',
+            color: 'white',
+            padding: '3px 8px',
+            borderRadius: '5px',
+            fontSize: '12px',
+            display: 'inline-block',
+        }
+    };
     const [user, setUser] = useState({});
     const [historyUser, setHistoryUser] = useState([]);
     const [captcha, setCaptcha] = useState(generateCaptcha());

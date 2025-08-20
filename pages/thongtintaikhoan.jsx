@@ -98,13 +98,21 @@ export default function ThongTinTaiKhoan() {
                             </tr>
                             <tr>
                                 <th style={styles.th}>Tên tài khoản:</th>
-                                <td style={styles.td}>{userCurrent.username}</td>
+                                <td style={{ ...styles.td, ...styles.dangerText }}>{userCurrent.username}</td>
                             </tr>
                             <tr>
                                 <th style={styles.th}>Số dư tài khoản:</th>
                                 <td style={{ ...styles.td, ...styles.dangerText }}>
                                     {userCurrent.dollar}_$
                                 </td>
+                            </tr>
+                            <tr>
+                                <th style={styles.th}>Email</th>
+                                <td style={{ ...styles.td, ...styles.dangerText }}>{userCurrent.email}</td>
+                            </tr>
+                            <tr>
+                                <th style={styles.th}>Số điện thoại</th>
+                                <td style={{ ...styles.td, ...styles.dangerText }}>{userCurrent.phoneNumber}</td>
                             </tr>
                             <tr>
                                 <th style={styles.th}>Số dư Acoin:</th>
@@ -116,9 +124,11 @@ export default function ThongTinTaiKhoan() {
                             </tr>
                             <tr>
                                 <th style={styles.th}>Mật khẩu:</th>
-                                <td style={styles.td}>
-                                    <span style={styles.dangerText}>***</span>
-                                    <a href="/doi-mat-khau" style={styles.passwordLink}>Đổi mật khẩu</a>
+                                <td style={{ ...styles.td, ...styles.underText }}>
+                                    <div style={{ borderBottomStyle: 'solid', display: "inline", borderColor: "red" }}>
+                                        <span style={styles.dangerText}>***</span>
+                                        <a href="/doi-mat-khau" style={styles.passwordLink}>Đổi mật khẩu</a>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>

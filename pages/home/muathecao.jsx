@@ -15,7 +15,7 @@ export default function Muathecao() {
             priceOld: 16665,
             priceNew: 9999,
             img: "/muathe.jpg",
-            link: "/",
+            link: "/mua-the",
         },
         {
             id: 2,
@@ -73,7 +73,7 @@ export default function Muathecao() {
                             <div className="meta">
                                 <span className="plays">Số lượng: {it.plays.toLocaleString("vi-VN")}</span>
                             </div>
-                            <a href={it.link} onClick={handleClick} className="buy-btn">Mua Ngay</a>
+                            <a href={it.link} className="buy-btn">Mua Ngay</a>
                         </article>
                     ))}
                 </div>
