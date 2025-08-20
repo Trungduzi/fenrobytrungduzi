@@ -143,12 +143,24 @@ export const byCard = async (dataInput, userId) => {
         const res = await fetch("https://nrorealbytrungduzi-production.up.railway.app/api/mua-the", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ ...dataInput, ...userId }),
+            body: JSON.stringify({ ...dataInput, ...{ id: userId } }),
         })
         const data = await res.json();
         return data;
     } catch (e) {
         console.log("Lỗi từ ở đây", e);
         return { error: "Lỗi bên userApi" };
+    }
+}
+
+export const getByCard = async (userId) => {
+    try {
+        const res = await fetch(`https://nrorealbytrungduzi-production.up.railway.app/api/get-by-card?id=${userId}`);
+        const data = await res.json();
+        return data;
+    }
+    catch (e) {
+        console.log("Lỗi bên userApi", e);
+        return { error: "Không thể lấy data" };
     }
 }

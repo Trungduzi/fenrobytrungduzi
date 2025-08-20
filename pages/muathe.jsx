@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { byCard } from '../src/app/userApi';
+import { getByCard } from '../src/app/userApi';
 
 export default function Muathe() {
     const styles = {
@@ -78,14 +79,40 @@ export default function Muathe() {
         }
     };
     const [user, setUser] = useState({});
-    const [historyUser, setHistoryUser] = useState([]);
     const [captcha, setCaptcha] = useState(generateCaptcha());
     const [hideSpan, setHideSpan] = useState(true);
+    const [getCardByed, setGetCardByed] = useState([]);
+
     const [error, setError] = useState({
         type: '',
         price: '',
         captchaInput: '',
     });
+
+    useEffect(() => {
+        const storedUser = localStorage.getItem("user");
+        if (storedUser) {
+            setUser(JSON.parse(storedUser));
+        }
+    }, []);
+
+    useEffect(() => {
+        const fetchHistory = async () => {
+            try {
+                const res = await getByCard(user.id);
+                console.log(res);
+                alert("dừng");
+                setGetCardByed(res);
+            } catch (error) {
+                console.error("Lỗi khi lấy lịch sử:", error);
+            }
+        };
+
+        if (user.id) {
+            fetchHistory();
+        }
+    }, [user.id]);
+
 
     const handleChange = (e) => {
         setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -104,13 +131,6 @@ export default function Muathe() {
     const refreshCaptcha = () => {
         setCaptcha(generateCaptcha());
     };
-
-    useEffect(() => {
-        const storedUser = localStorage.getItem("user");
-        if (storedUser) {
-            setUser(JSON.parse(storedUser));
-        }
-    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -144,8 +164,8 @@ export default function Muathe() {
             hasError = true;
             return;
         }
-
-        const res = await byCard(formData, user);
+        console.log(getCardByed);
+        const res = await byCard(formData, user.id);
 
         if (res.status === true) {
             setFormData({
@@ -153,7 +173,7 @@ export default function Muathe() {
                 price: '',
                 captchaInput: '',
             });
-
+            alert("Mua thẻ thành công");
             if (res.user) {
                 const fixedUser = { ...res.user, username: res.user.user };
                 localStorage.setItem("user", JSON.stringify(fixedUser));
@@ -221,7 +241,7 @@ export default function Muathe() {
                             </div>
                             <div style={{ color: "red" }}>{error.captchaInput}</div>
                         </div>
-
+                        <div style={{ marginBottom: "5px", color: "red", fontWeight: "900" }}>Tổng Bill:  {formData.price * 2}</div>
                         <button type="submit" onClick={handleSubmit} style={styles.button}>Mua thẻ</button>
                     </form>
                 </div>
@@ -237,14 +257,14 @@ export default function Muathe() {
                                 <th style={styles.th}>Mã thẻ</th>
                                 <th style={styles.th}>Serial</th>
                                 <th style={styles.th}>Mệnh giá</th>
-                                <th style={styles.th}>Kết quả</th>
+                                <th style={styles.th}>Trạng thái</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {historyUser.map((item, index, array) => (
+                            {getCardByed.map((item, index, array) => (
                                 <tr key={index}>
                                     <td style={styles.td}>{array.length - index}</td>
-                                    <td style={styles.td}>{formatDateTime(item.createdAt)}</td>
+                                    <td style={styles.td}>{item.createdAt}</td>
                                     <td style={styles.td}>{item.name}</td>
                                     <td style={styles.td}>{item.code}</td>
                                     <td style={styles.td}>{item.serial}</td>
@@ -252,7 +272,6 @@ export default function Muathe() {
                                     <td style={styles.td}>
                                         <span style={styles.badgeFail}>{item.status}</span>
                                     </td>
-                                    <td style={styles.td}>{item.receive}</td>
                                 </tr>
                             ))}
                         </tbody>

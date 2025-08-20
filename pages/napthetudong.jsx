@@ -116,6 +116,7 @@ export default function NapTheTuDong() {
         const fetchHistory = async () => {
             try {
                 const res = await getHistory(user.id);
+                console.log(res);
                 setHistoryUser(res);
             } catch (error) {
                 console.error("Lỗi khi lấy lịch sử:", error);

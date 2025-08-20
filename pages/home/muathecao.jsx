@@ -4,6 +4,7 @@ import "./muathecao.scss";
 import Tamthoi from "../../components/tamthoi";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Swal from "sweetalert2";
+// import { Link, useNavigate } from "react-router-dom";
 
 export default function Muathecao() {
 
