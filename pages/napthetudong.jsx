@@ -44,7 +44,7 @@ export default function NapTheTuDong() {
         },
         tableWrapper: {
             marginTop: '30px',
-            overflowX: "scroll",
+            overflowX: "hidden",
             overflowY: "scroll",
             backgroundColor: 'white',
             border: '1px solid #ddd',
@@ -144,21 +144,32 @@ export default function NapTheTuDong() {
         setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
     };
 
+
+
+
+
+
     const ref = useRef();
 
     useEffect(() => {
         const el = ref.current;
+
         const handler = (e) => {
-            e.preventDefault();
             if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-                el.scrollLeft += e.deltaX;
-            } else {
-                el.scrollTop += e.deltaY;
+                // ép chỉ cuộn ngang
+                el.scrollLeft += e.deltaY || e.deltaX;
+                e.preventDefault();
             }
         };
+
         el.addEventListener("wheel", handler, { passive: false });
         return () => el.removeEventListener("wheel", handler);
     }, []);
+
+
+
+
+
 
 
 
