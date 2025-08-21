@@ -44,13 +44,13 @@ export default function NapTheTuDong() {
         },
         tableWrapper: {
             marginTop: '30px',
-            overflowX: 'auto',
-            overflowY: 'auto',
+            overflowX: 'scroll',
+            overflowY: 'visible',
             backgroundColor: 'white',
             border: '1px solid #ddd',
             borderRadius: 4,
             padding: '10px',
-            height: "200px",
+            height: "500px",
         },
         table: {
             width: '100%',
@@ -84,6 +84,7 @@ export default function NapTheTuDong() {
     const [historyUser, setHistoryUser] = useState([]);
     const [captcha, setCaptcha] = useState(generateCaptcha());
     const [hideSpan, setHideSpan] = useState(true);
+    const [scroll, setScroll] = useState(true);
     const [error, setError] = useState({
         type: '',
         price: '',
@@ -142,6 +143,17 @@ export default function NapTheTuDong() {
     const handleChange = (e) => {
         setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
     };
+
+    const handleWheel = async (e) => {
+        if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+            e.currentTarget.scrollLeft += e.deltaX;
+            e.preventDefault();
+        }
+        else {
+            e.currentTarget.scrollTop += deltaY;
+            e.preventDefault();
+        }
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -278,7 +290,7 @@ export default function NapTheTuDong() {
                 </form>
             </div>
 
-            <div style={styles.tableWrapper}>
+            <div style={styles.tableWrapper} onWheel={handleWheel}>
                 <h4 style={{ fontWeight: 'bold', marginBottom: '15px' }}>Lịch sử nạp thẻ</h4>
                 <table style={styles.table}>
                     <thead style={styles.thead}>
