@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useRef } from 'react';
 import { napCard, getHistory } from "../src/app/userApi.js";
 
 
@@ -44,8 +44,8 @@ export default function NapTheTuDong() {
         },
         tableWrapper: {
             marginTop: '30px',
-            overflowX: 'scroll',
-            overflowY: 'visible',
+            overflowX: "scroll",
+            overflowY: "scroll",
             backgroundColor: 'white',
             border: '1px solid #ddd',
             borderRadius: 4,
@@ -144,16 +144,23 @@ export default function NapTheTuDong() {
         setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
     };
 
-    const handleWheel = async (e) => {
-        if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-            e.currentTarget.scrollLeft += e.deltaX;
+    const ref = useRef();
+
+    useEffect(() => {
+        const el = ref.current;
+        const handler = (e) => {
             e.preventDefault();
-        }
-        else {
-            e.currentTarget.scrollTop += deltaY;
-            e.preventDefault();
-        }
-    }
+            if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+                el.scrollLeft += e.deltaX;
+            } else {
+                el.scrollTop += e.deltaY;
+            }
+        };
+        el.addEventListener("wheel", handler, { passive: false });
+        return () => el.removeEventListener("wheel", handler);
+    }, []);
+
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -290,7 +297,7 @@ export default function NapTheTuDong() {
                 </form>
             </div>
 
-            <div style={styles.tableWrapper} onWheel={handleWheel}>
+            <div ref={ref} style={styles.tableWrapper}>
                 <h4 style={{ fontWeight: 'bold', marginBottom: '15px' }}>Lịch sử nạp thẻ</h4>
                 <table style={styles.table}>
                     <thead style={styles.thead}>
@@ -308,7 +315,7 @@ export default function NapTheTuDong() {
                     <tbody>
                         {historyUser.map((item, index, array) => (
                             <tr key={index}>
-                                <td style={styles.td}>{array.length - index}</td>
+                                <td style={styles.td} >{array.length - index}</td>
                                 <td style={styles.td}>{formatDateTime(item.createdAt)}</td>
                                 <td style={styles.td}>{item.name}</td>
                                 <td style={styles.td}>{item.code}</td>
