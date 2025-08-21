@@ -62,7 +62,7 @@ export default function Muathe() {
         th: {
             fontWeight: 'bold',
             padding: '10px',
-            borderBottom: '1px solid #ddd',
+            borderBottom: '2px solid #ddd',
             textAlign: 'left',
         },
         td: {
@@ -101,7 +101,6 @@ export default function Muathe() {
             try {
                 const res = await getByCard(user.id);
                 console.log(res);
-                alert("dừng");
                 setGetCardByed(res);
             } catch (error) {
                 console.error("Lỗi khi lấy lịch sử:", error);
@@ -252,19 +251,18 @@ export default function Muathe() {
                         <thead style={styles.thead}>
                             <tr>
                                 <th style={styles.th}>STT</th>
-                                <th style={styles.th}>Thời gian</th>
                                 <th style={styles.th}>Nhà mạng</th>
                                 <th style={styles.th}>Mã thẻ</th>
                                 <th style={styles.th}>Serial</th>
                                 <th style={styles.th}>Mệnh giá</th>
                                 <th style={styles.th}>Trạng thái</th>
+                                <th style={styles.th}>Thời gian</th>
                             </tr>
                         </thead>
                         <tbody>
                             {getCardByed.map((item, index, array) => (
                                 <tr key={index}>
                                     <td style={styles.td}>{array.length - index}</td>
-                                    <td style={styles.td}>{item.createdAt}</td>
                                     <td style={styles.td}>{item.name}</td>
                                     <td style={styles.td}>{item.code}</td>
                                     <td style={styles.td}>{item.serial}</td>
@@ -272,6 +270,7 @@ export default function Muathe() {
                                     <td style={styles.td}>
                                         <span style={styles.badgeFail}>{item.status}</span>
                                     </td>
+                                    <td style={styles.td}>{item.createdAt}</td>
                                 </tr>
                             ))}
                         </tbody>
