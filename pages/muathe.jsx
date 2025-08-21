@@ -45,8 +45,7 @@ export default function Muathe() {
         },
         tableWrapper: {
             marginTop: '30px',
-            overflowX: 'hidden',
-            overflowY: "auto",
+            overflowX: 'auto',
             backgroundColor: 'white',
             border: '1px solid #ddd',
             borderRadius: 4,
@@ -132,56 +131,6 @@ export default function Muathe() {
     const refreshCaptcha = () => {
         setCaptcha(generateCaptcha());
     };
-
-    const ref = useRef();
-    const touchStart = useRef({ x: 0, y: 0 });
-
-    useEffect(() => {
-        const el = ref.current;
-
-        const handleWheel = (e) => {
-            // Desktop (chuột cuộn)
-            if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-                el.scrollLeft += e.deltaY || e.deltaX;
-            } else {
-                el.scrollTop += e.deltaY;
-            }
-            e.preventDefault();
-        };
-
-        const handleTouchStart = (e) => {
-            touchStart.current = {
-                x: e.touches[0].clientX,
-                y: e.touches[0].clientY,
-            };
-        };
-
-        const handleTouchMove = (e) => {
-            const dx = e.touches[0].clientX - touchStart.current.x;
-            const dy = e.touches[0].clientY - touchStart.current.y;
-
-            if (Math.abs(dx) > Math.abs(dy)) {
-                // cuộn ngang
-                el.scrollLeft -= dx;
-                touchStart.current.x = e.touches[0].clientX;
-            } else {
-                // cuộn dọc
-                el.scrollTop -= dy;
-                touchStart.current.y = e.touches[0].clientY;
-            }
-            e.preventDefault();
-        };
-
-        el.addEventListener("wheel", handleWheel, { passive: false });
-        el.addEventListener("touchstart", handleTouchStart, { passive: false });
-        el.addEventListener("touchmove", handleTouchMove, { passive: false });
-
-        return () => {
-            el.removeEventListener("wheel", handleWheel);
-            el.removeEventListener("touchstart", handleTouchStart);
-            el.removeEventListener("touchmove", handleTouchMove);
-        };
-    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -297,7 +246,7 @@ export default function Muathe() {
                     </form>
                 </div>
 
-                <div ref={ref} style={styles.tableWrapper}>
+                <div style={styles.tableWrapper}>
                     <h4 style={{ fontWeight: 'bold', marginBottom: '15px' }}>Lịch sử mua thẻ</h4>
                     <table style={styles.table}>
                         <thead style={styles.thead}>
