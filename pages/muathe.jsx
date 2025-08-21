@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { byCard } from '../src/app/userApi';
 import { getByCard } from '../src/app/userApi';
 
@@ -45,11 +45,13 @@ export default function Muathe() {
         },
         tableWrapper: {
             marginTop: '30px',
-            overflowX: 'auto',
+            overflowX: 'hidden',
+            overflowY: "auto",
             backgroundColor: 'white',
             border: '1px solid #ddd',
             borderRadius: 4,
             padding: '10px',
+            height: "300px",
         },
         table: {
             width: '100%',
@@ -130,6 +132,23 @@ export default function Muathe() {
     const refreshCaptcha = () => {
         setCaptcha(generateCaptcha());
     };
+
+    const ref = useRef();
+
+    useEffect(() => {
+        const el = ref.current;
+
+        const handler = (e) => {
+            if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+                el.scrollLeft += e.deltaY || e.deltaX;
+                e.preventDefault();
+            }
+        };
+
+        el.addEventListener("wheel", handler, { passive: false });
+        return () => el.removeEventListener("wheel", handler);
+    }, []);
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -245,7 +264,7 @@ export default function Muathe() {
                     </form>
                 </div>
 
-                <div style={styles.tableWrapper}>
+                <div ref={ref} style={styles.tableWrapper}>
                     <h4 style={{ fontWeight: 'bold', marginBottom: '15px' }}>Lịch sử mua thẻ</h4>
                     <table style={styles.table}>
                         <thead style={styles.thead}>

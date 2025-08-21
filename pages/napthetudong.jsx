@@ -50,7 +50,7 @@ export default function NapTheTuDong() {
             border: '1px solid #ddd',
             borderRadius: 4,
             padding: '10px',
-            height: "500px",
+            height: "300px",
         },
         table: {
             width: '100%',
@@ -156,7 +156,6 @@ export default function NapTheTuDong() {
 
         const handler = (e) => {
             if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-                // ép chỉ cuộn ngang
                 el.scrollLeft += e.deltaY || e.deltaX;
                 e.preventDefault();
             }
