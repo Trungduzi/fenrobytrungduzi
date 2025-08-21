@@ -77,12 +77,13 @@ export default function Login() {
                         >
                             Sign In
                         </button>
+                        <a href="/Tamthoi" className="" style={{ color: "black", paddingLeft: "20px" }}>Forget password</a>
                     </div>
                 </form>
                 <p className="text-center text-gray-500 text-xs">
                     &copy; Product developed by TRUNGDUZI.
                 </p>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 }

@@ -183,7 +183,7 @@ export default function Muathe() {
                 window.location.href = "/mua-the";
             }, 200);
         } else {
-            alert(res.message || "Có lỗi xảy ra khi gửi thẻ.");
+            alert("Hết thẻ. Vui lòng chọn thẻ khác!");
         }
     };
 

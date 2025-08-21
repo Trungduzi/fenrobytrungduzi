@@ -35,11 +35,9 @@ function App() {
       <Routes>
         <Route path="/admin" element={
           <>
-            {/* <Tamthoi /> */}
             <Admin />
           </>}
         />
-
 
         <Route path="/" element={
           <>
@@ -76,6 +74,12 @@ function App() {
             <Header />
             <Muathe />
           </>}
+        />
+        <Route path="/Tamthoi" element={
+          <>
+            <Tamthoi />
+          </>}
+
         />
 
         <Route element={<AppLayOut />}>

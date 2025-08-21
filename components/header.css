@@ -136,18 +136,15 @@ li {
     text-decoration: underline;
 }
 
-.element-a:hover .nav-block {
-    display: block;
-}
-
 .element-div-a {
     color: white;
     width: 100%;
+    cursor: context-menu;
 }
 
 .navigation-special:hover .nav-block {
     display: block;
-    cursor: pointer;
+    cursor: context-menu;
 }
 
 .icon-message {

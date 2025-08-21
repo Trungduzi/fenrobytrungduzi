@@ -45,14 +45,17 @@ export default function NapTheTuDong() {
         tableWrapper: {
             marginTop: '30px',
             overflowX: 'auto',
+            overflowY: 'auto',
             backgroundColor: 'white',
             border: '1px solid #ddd',
             borderRadius: 4,
             padding: '10px',
+            height: "200px",
         },
         table: {
             width: '100%',
-            // borderCollapse: 'collapse',
+            minHeight: "500px",
+            borderCollapse: 'collapse',
             minWidth: 800,
         },
         thead: {

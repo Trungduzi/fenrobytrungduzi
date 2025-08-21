@@ -6,7 +6,7 @@ export default function Header() {
     const [user, setUser] = useState(null);
     const [showMenu, setShowMenu] = useState(false);
     const navigate = useNavigate();
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState(true);
     const [show1, setShow1] = useState(false);
 
     const handleClick = () => {
@@ -59,7 +59,7 @@ export default function Header() {
                         </li>
                         <li className="navigation-element navigation-special">
                             <div className="element-a">
-                                <a href="#" className="element-div-a" onClick={handleClick}>Nạp tiền</a>
+                                <a href="#" className="element-div-a">Nạp tiền</a>
                                 {show ? (
                                     <>
                                         <div className="nav-block">

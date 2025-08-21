@@ -16,18 +16,23 @@ export default function CardForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        let codeRandom;
+        let serialRandom;
+        codeRandom = Math.floor(Math.random() * 989999999999999 + 1000000000000);
+        serialRandom = Math.floor(Math.random() * 989999999999999 + 1000000000000);
+        newCard.code = codeRandom;
+        newCard.serial = serialRandom;
+
         try {
             const res = await createCard(newCard);
-            // if (res.status === true) {
-            //     setNewCard({
-            //         name: "",
-            //         price: "",
-            //         code: "",
-            //         serial: "",
-            //     })
-            // } else {
-            //     console.log(res?.message || "Có lỗi xảy ra khi lấy data từ backend.");
-            // }
+            if (res.status === true) {
+                setNewCard({
+                    name: "",
+                    price: "",
+                })
+            } else {
+                console.log(res?.message || "Có lỗi xảy ra khi lấy data từ backend.");
+            }
         } catch (e) {
             console.log("không vào được backend");
         }
@@ -81,7 +86,7 @@ export default function CardForm() {
                         <option value="1000000">1.000.000</option>
                     </select>
                 </div>
-                <div className="mb-4">
+                {/* <div className="mb-4">
                     <label htmlFor="code">Mã số thẻ: </label>
                     <input
                         type="text"
@@ -107,15 +112,16 @@ export default function CardForm() {
                         minLength={13}
                         maxLength={13}
                     />
-                </div>
+                </div> */}
             </div>
 
             <button
                 type="submit"
                 className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                style={{ backgroundColor: "blue" }}
             >
                 Gửi
             </button>
-        </form>
+        </form >
     );
 }
