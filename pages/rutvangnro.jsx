@@ -12,7 +12,6 @@ export default function RutVangNro() {
             return;
         }
 
-        // Giả lập phản hồi thất bại vì chưa phát sinh giao dịch
         setMessage("Tài khoản của quý khách chưa phát sinh giao dịch.");
     };
 

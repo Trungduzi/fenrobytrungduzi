@@ -11,7 +11,6 @@ export default function RutQuanHuyLienQuan() {
             return;
         }
 
-        // Giả lập kết quả khi chưa có giao dịch
         setMessage("Tài khoản của quý khách chưa phát sinh giao dịch.");
     };
 

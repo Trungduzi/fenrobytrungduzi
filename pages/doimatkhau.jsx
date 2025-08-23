@@ -23,7 +23,6 @@ export default function DoiMatKhau() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // console.log(password, newPassword, confirmPassword);
         let hasError = false;
         const newError = { ...error };
         const cutPassword = password.replace(/\s+/g, "");
@@ -72,8 +71,6 @@ export default function DoiMatKhau() {
 
         }
     }
-    // const data = res.json();
-    // console.log(data);
 
     return (
         <>

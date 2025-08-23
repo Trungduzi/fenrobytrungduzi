@@ -3,7 +3,6 @@ import Swal from "sweetalert2";
 
 export default function Tamthoi() {
     useEffect(() => {
-        // Nếu chưa ấn tắt hoặc thời gian tắt đã hết => hiện popup
         Swal.fire({
             title: "Admin chưa cứu được",
             html: `

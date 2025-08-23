@@ -8,7 +8,7 @@ export default function LichSuQuayMiniGame() {
     const [fromDate, setFromDate] = useState("");
     const [toDate, setToDate] = useState("");
 
-    const fakeData = []; // bạn có thể thay bằng dữ liệu thật
+    const fakeData = [];
 
     return (
         <div>

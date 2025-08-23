@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { updateN } from "../src/app/userApi";
 import "./header.css";
 
 export default function Header() {
@@ -20,9 +21,21 @@ export default function Header() {
     useEffect(() => {
         const storedUser = localStorage.getItem("user");
         if (storedUser) {
-            setUser(JSON.parse(storedUser));
+            const parsedUser = JSON.parse(storedUser);
+
+            (async () => {
+                const data = await updateN(parsedUser.id);
+                if (data) {
+                    setUser(data);
+                    localStorage.setItem("user", JSON.stringify(data));
+                } else {
+                    setUser(parsedUser);
+                }
+            })();
         }
     }, []);
+
+
 
     const handleLogout = () => {
         localStorage.removeItem("user");
@@ -102,9 +115,9 @@ export default function Header() {
                                 <li className="nav-right-li text-white navigation-login nav-signout">
                                     <Link to="/thong-tin-tai-khoan" className="username-link">
                                         <i className="fa-solid fa-user user-icon"></i>
-                                        <span className="username-text">{user.username}</span>
+                                        <span className="username-text">{user.user}</span>
                                         <span className="user-money">- {Math.floor(parseFloat(user.dollar))}</span>
-                                        <span className="dollar"></span>
+                                        <span className="dollarPC">$</span>
                                     </Link>
                                 </li>
                                 <li className="nav-right-li">
@@ -175,7 +188,7 @@ export default function Header() {
                                     <li className="user-onmenu show-loginmobile">
                                         <Link to="/thong-tin-tai-khoan" className="user-signinmobile">
                                             <i className="fa-solid fa-user user-icon"></i>
-                                            <span className="username-text">{user.username}</span>
+                                            <span className="username-text">{user.user}</span>
                                             <span className="user-money">- {Math.floor(parseFloat(user.dollar))}</span>
                                             <span className="dollar">$</span>
                                         </Link>

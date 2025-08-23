@@ -12,8 +12,6 @@ export default function RutNgocNro() {
             setMessage("Vui lòng nhập đầy đủ thông tin tài khoản.");
             return;
         }
-
-        // Giả lập phản hồi thất bại vì chưa phát sinh giao dịch
         setMessage("Tài khoản của quý khách chưa phát sinh giao dịch.");
     };
 

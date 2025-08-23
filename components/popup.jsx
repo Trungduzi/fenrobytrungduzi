@@ -6,8 +6,6 @@ export default function HomePage() {
     useEffect(() => {
         const hiddenUntil = localStorage.getItem("popup_hidden_until");
         const now = Date.now();
-
-        // Nếu chưa ấn tắt hoặc thời gian tắt đã hết => hiện popup
         if (!hiddenUntil || now > parseInt(hiddenUntil)) {
             Swal.fire({
                 title: "Cảnh báo",
@@ -27,7 +25,6 @@ export default function HomePage() {
                 }
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Lưu thời gian tắt (hiện tại + 1 tiếng)
                     const oneHourLater = now + 10 * 60 * 1000;
                     localStorage.setItem("popup_hidden_until", oneHourLater.toString());
                 }

@@ -8,7 +8,6 @@ export default function LichSuGiaoDich() {
 
     const handleSearch = (e) => {
         e.preventDefault();
-        // Gọi API ở đây nếu có
         alert("Đang tìm kiếm...");
     };
 
@@ -24,8 +23,6 @@ export default function LichSuGiaoDich() {
             <h4 className="fw-bold mb-4 border-bottom pb-2 text-uppercase text-danger">
                 Lịch sử giao dịch
             </h4>
-
-            {/* Bộ lọc */}
             <form className="row g-3 mb-4" onSubmit={handleSearch}>
                 <div className="col-md-3">
                     <label className="form-label">Từ ngày</label>
@@ -72,7 +69,6 @@ export default function LichSuGiaoDich() {
                         <option value="napthe">Nạp thẻ</option>
                         <option value="muaac">Mua tài khoản</option>
                         <option value="rutvang">Rút vàng</option>
-                        {/* Thêm các loại khác nếu cần */}
                     </select>
                 </div>
 
@@ -86,7 +82,6 @@ export default function LichSuGiaoDich() {
                 </div>
             </form>
 
-            {/* Bảng kết quả */}
             <div className="table-responsive">
                 <table className="table table-bordered table-hover">
                     <thead className="table-light">

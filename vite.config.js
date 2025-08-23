@@ -4,7 +4,6 @@ import path from 'path'
 import history from 'connect-history-api-fallback'
 import { createHtmlPlugin } from 'vite-plugin-html'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),

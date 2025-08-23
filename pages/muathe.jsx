@@ -125,7 +125,7 @@ export default function Muathe() {
     });
 
     function generateCaptcha() {
-        return Math.floor(100 + Math.random() * 900).toString(); // 3 chữ số
+        return Math.floor(100 + Math.random() * 900).toString();
     }
 
     const refreshCaptcha = () => {
@@ -159,14 +159,13 @@ export default function Muathe() {
         }
 
         if (formData.captchaInput !== captcha) {
-            // alert("Mã captcha không đúng!");
             newError.captchaInput = "Mã captcha không đúng!";
             hasError = true;
             return;
         }
         console.log(getCardByed);
         const res = await byCard(formData, user.id);
-
+        setUser(localStorage.getItem("user"));
         if (res.status === true) {
             setFormData({
                 type: '',
@@ -183,8 +182,6 @@ export default function Muathe() {
             setTimeout(() => {
                 window.location.href = "/mua-the";
             }, 200);
-        } else {
-            alert("Hết thẻ. Vui lòng chọn thẻ khác!");
         }
     };
 
@@ -199,12 +196,11 @@ export default function Muathe() {
                             <label>Loại thẻ:</label>
                             <select name="type" value={formData.type} onChange={handleChange} style={styles.input}>
                                 <option value="">-- Vui lòng chọn nhà mạng --</option>
-                                <option value="VIETTEL">VIETTEL</option>
-                                <option value="VINAPHONE">VINAPHONE</option>
-                                <option value="MOBIFONE">MOBIFONE</option>
-                                <option value="ZING">ZING</option>
-                                <option value="GARENA">GARENA</option>
-                                <option value="GATE">GATE</option>
+                                <option value="TDZI">TDZI</option>
+                                <option value="DOCLAP">DOCLAP</option>
+                                <option value="TUDO">TUDO</option>
+                                <option value="HANHPHUC">HANHPHUC</option>
+                                <option value="VIPGM">VIPGM</option>
                             </select>
                             <div style={{ color: "red" }}>{error.type}</div>
                         </div>
@@ -213,6 +209,7 @@ export default function Muathe() {
                             <label>Mệnh giá:</label>
                             <select name="price" value={formData.price} onChange={handleChange} style={styles.input}>
                                 <option value="">-- Chọn mệnh giá --</option>
+                                <option value="10000">10.000 - Nhận 100.0%</option>
                                 <option value="20000">20.000 - Nhận 100.0%</option>
                                 <option value="50000">50.000 - Nhận 100.0%</option>
                                 <option value="100000">100.000 - Nhận 100.0%</option>

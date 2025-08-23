@@ -15,10 +15,7 @@ export default function AppLayout() {
                     gap: "20px",
                 }}
             >
-                {/* Sidebar bên trái */}
-
                 <div className="layout1"><Sidebar /></div>
-
                 <div className="layout2"><Outlet /></div>
                 <div className="layoutNull"></div>
             </div >

@@ -81,7 +81,6 @@ export default function NapTheTuDong() {
     const [historyUser, setHistoryUser] = useState([]);
     const [captcha, setCaptcha] = useState(generateCaptcha());
     const [hideSpan, setHideSpan] = useState(true);
-    const [scroll, setScroll] = useState(true);
     const [error, setError] = useState({
         type: '',
         price: '',
@@ -99,7 +98,7 @@ export default function NapTheTuDong() {
     });
 
     function generateCaptcha() {
-        return Math.floor(100 + Math.random() * 900).toString(); // 3 chữ số
+        return Math.floor(100 + Math.random() * 900).toString();
     }
 
     const refreshCaptcha = () => {
@@ -217,12 +216,11 @@ export default function NapTheTuDong() {
                         <label>Loại thẻ:</label>
                         <select name="type" value={formData.type} onChange={handleChange} style={styles.input}>
                             <option value="">-- Vui lòng chọn nhà mạng --</option>
-                            <option value="VIETTEL">VIETTEL</option>
-                            <option value="VINAPHONE">VINAPHONE</option>
-                            <option value="MOBIFONE">MOBIFONE</option>
-                            <option value="ZING">ZING</option>
-                            <option value="GARENA">GARENA</option>
-                            <option value="GATE">GATE</option>
+                            <option value="TDZI">TDZI</option>
+                            <option value="DOCLAP">DOCLAP</option>
+                            <option value="TUDO">TUDO</option>
+                            <option value="HANHPHUC">HANHPHUC</option>
+                            <option value="VIPGM">VIPGM</option>
                         </select>
                         <div style={{ color: "red" }}>{error.type}</div>
                     </div>

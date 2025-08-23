@@ -83,20 +83,6 @@ li {
     height: 100%;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .header-navigation {
     display: flex;
     width: 65%;
@@ -245,10 +231,6 @@ li {
     border-radius: 18px;
 }
 
-
-
-/* Mặc định ẩn nút menu trên PC */
-
 .nav-mobile {
     display: none;
     position: absolute;
@@ -273,7 +255,6 @@ li {
     right: 0;
     z-index: 13;
 }
-
 
 .username-link {
     color: white;
@@ -317,6 +298,10 @@ li {
     color: white;
 }
 
+.dollarPC {
+    color: white;
+}
+
 .dollar {
     color: white;
 }
@@ -332,9 +317,6 @@ li {
     right: 0;
     padding-left: 30px;
 }
-
-
-
 
 .show-home {
     width: 100%;
@@ -465,32 +447,6 @@ li {
     text-decoration: underline;
 }
 
-
-
-/* @media() {
-    .header {
-        background-color: black;
-    }
-} */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Ẩn menu ở mobile */
 @media (max-width: 1155px) {
     .navigation-message {
@@ -513,7 +469,6 @@ li {
         display: block;
     }
 }
-
 
 @media (max-width: 800px) {
     .header {

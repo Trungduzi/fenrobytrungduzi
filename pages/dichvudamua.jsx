@@ -9,7 +9,6 @@ export default function DichVuDaMua() {
 
     const handleSearch = (e) => {
         e.preventDefault();
-        // Gọi API ở đây nếu có
         alert("Đang tìm kiếm...");
     };
 
@@ -26,8 +25,6 @@ export default function DichVuDaMua() {
             <h4 className="fw-bold mb-4 border-bottom pb-2 text-uppercase text-danger">
                 Dịch Vụ Đã Mua
             </h4>
-
-            {/* Bộ lọc */}
             <form className="row g-3 mb-4" onSubmit={handleSearch}>
                 <div className="col-md-3">
                     <label className="form-label">Mã ID</label>
@@ -84,7 +81,6 @@ export default function DichVuDaMua() {
                         <option value="napthe">Nạp thẻ tự động</option>
                         <option value="muaac">Thanh toán dịch vụ</option>
                         <option value="rutvang">Nạp ví ATM tự động</option>
-                        {/* Thêm các loại khác nếu cần */}
                     </select>
                 </div>
 
@@ -98,7 +94,6 @@ export default function DichVuDaMua() {
                 </div>
             </form>
 
-            {/* Bảng kết quả */}
             <div className="table-responsive">
                 <table className="table table-bordered table-hover">
                     <thead className="table-light">

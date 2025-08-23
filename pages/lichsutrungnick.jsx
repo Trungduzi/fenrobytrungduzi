@@ -19,7 +19,7 @@ export default function LichSuTrungNick() {
             status: "Thành công",
         }
 
-    ]; // bạn có thể thay bằng dữ liệu thật
+    ];
 
     return (
         <div>
@@ -60,9 +60,6 @@ export default function LichSuTrungNick() {
                                         {item.status}
                                     </span>
                                 </td>
-                                {/* <td>
-                                    <button className="btn btn-sm btn-primary">Chi tiết</button>
-                                </td> */}
                             </tr>
                         ))
                     )}

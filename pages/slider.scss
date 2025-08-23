@@ -1,4 +1,3 @@
-/* Container chính */
 a {
     text-decoration: none;
 }
@@ -17,7 +16,6 @@ a {
     top: 17vh;
 }
 
-/* Flex 2 cột */
 .container-blox {
     display: flex;
     justify-content: space-between;
@@ -25,7 +23,6 @@ a {
     flex-wrap: wrap;
 }
 
-/* Bảng top user */
 .container-content {
     width: 35%;
     background-color: #1e1e1e;
@@ -70,27 +67,23 @@ a {
     border-bottom: 1px solid #444;
 }
 
-/* Cột thứ tự */
 .user-select-1 {
     color: white;
     width: 40px;
     font-weight: bold;
 }
 
-/* Cột tên */
 .user-select-2 {
     color: white;
     width: 200px;
 }
 
-/* Cột tiền */
 .user-select-3 {
     width: 150px;
     color: #ffb347;
     font-weight: bold;
 }
 
-/* SLIDER */
 .slider-container {
     z-index: 0;
     width: 62%;
@@ -137,7 +130,6 @@ a {
 .swiper-button-prev::after,
 .swiper-button-next::after {
     display: none;
-    /* Ẩn icon mặc định của Swiper */
 }
 
 .swiper-button-prev {
@@ -187,16 +179,6 @@ a {
     text-align: center;
     left: 91%;
 }
-
-
-
-
-
-
-
-
-
-
 
 @media(max-width: 800px) {
     .container-main {

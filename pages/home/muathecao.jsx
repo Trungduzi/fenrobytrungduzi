@@ -4,10 +4,11 @@ import "./muathecao.scss";
 import Tamthoi from "../../components/tamthoi";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Swal from "sweetalert2";
-// import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Muathecao() {
-
+    const [user, setUser] = useState(null);
+    const navigate = useNavigate();
     const ITEMS = [
         {
             id: 1,
@@ -25,7 +26,7 @@ export default function Muathecao() {
             priceOld: 11429,
             priceNew: 8000,
             img: "/bynro.png",
-            link: "/",
+            link: "/Tam-thoi",
         },
         {
             id: 3,
@@ -34,15 +35,28 @@ export default function Muathecao() {
             priceOld: 20000,
             priceNew: 8000,
             img: "/bylq.png",
-            link: "/",
+            link: "/Tam-thoi",
         },
     ];
 
+    useEffect(() => {
+        const storedUser = localStorage.getItem("user");
+        if (storedUser) {
+            setUser(storedUser);
+        }
+    }, []);
 
+    const handleRedirect = (path) => {
+        if (user) {
+            navigate(path);
+        }
+        else {
+            navigate("/login");
+        }
+    }
 
     const handleClick = (e) => {
-        e.preventDefault(); // chặn chuyển trang ngay lập tức
-
+        e.preventDefault();
         Swal.fire({
             title: "THÔNG BÁO!",
             html: `
@@ -54,7 +68,6 @@ export default function Muathecao() {
             }
         }).then((result) => {
             if (result.isConfirmed) {
-                return;
             }
         });
     };
@@ -74,7 +87,15 @@ export default function Muathecao() {
                             <div className="meta">
                                 <span className="plays">Số lượng: {it.plays.toLocaleString("vi-VN")}</span>
                             </div>
-                            <a href={it.link} className="buy-btn">Mua Ngay</a>
+                            {(it.id < 2) ? (
+                                <>
+                                    <a onClick={() => handleRedirect("/mua-the")} className="buy-btn">Mua Ngay</a>
+                                </>
+                            ) : (
+                                <>
+                                    <a onClick={handleClick} className="buy-btn">Mua Ngay</a>
+                                </>
+                            )}
                         </article>
                     ))}
                 </div>

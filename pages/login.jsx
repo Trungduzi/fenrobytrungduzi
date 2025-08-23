@@ -25,7 +25,7 @@ export default function Login() {
                     dollar: result.user.dollar
                 };
                 localStorage.setItem("user", JSON.stringify(userInfo));
-                window.location.href = "/"; // hoặc navigate("/")
+                window.location.href = "/";
             } else {
                 alert(result.message || "Đăng nhập thất bại");
             }
@@ -77,7 +77,7 @@ export default function Login() {
                         >
                             Sign In
                         </button>
-                        <a href="/Tamthoi" className="" style={{ color: "black", paddingLeft: "20px" }}>Forget password</a>
+                        <a href="/Tamthoi" className="" style={{ color: "black", paddingLeft: "20px", textDecoration: "underline", color: "red" }}> Forget password</a>
                     </div>
                 </form>
                 <p className="text-center text-gray-500 text-xs">

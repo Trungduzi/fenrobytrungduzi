@@ -28,8 +28,6 @@ export default function Sidebar() {
         setShow1(!show1);
     }
 
-
-
     return (
         <div className="sidebar-container">
             <div className="sidebar-row">

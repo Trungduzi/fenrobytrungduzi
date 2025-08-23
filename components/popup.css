@@ -1,6 +1,4 @@
 .swal2-icon.swal2-warning::before {
-    content: "⚠️";
-    /* icon cảnh báo */
     font-size: 40px;
     line-height: 1;
 }

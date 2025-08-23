@@ -39,8 +39,8 @@ export default function LichSuNapThe() {
     const handleSearchToday = async (e) => {
         e.preventDefault();
         try {
-            const res = await getHistoryCard(user.id); // res là mảng trực tiếp
-            const DateToday = new Date().toLocaleDateString('en-CA'); // "yyyy-mm-dd"
+            const res = await getHistoryCard(user.id);
+            const DateToday = new Date().toLocaleDateString('en-CA');
             const todayHistory = res.filter(item => {
                 const itemDate = new Date(item.createdAt).toLocaleDateString('en-CA');
                 return itemDate === DateToday;
@@ -87,7 +87,7 @@ export default function LichSuNapThe() {
         e.preventDefault();
         try {
             const res = await getHistoryCard(user.id);
-            const dateToday = new Date(); // "yyyy-mm-dd"
+            const dateToday = new Date();
             const monthToday = dateToday.getMonth() + 1;
             const monthHistory = res.filter(item => {
                 const itemMonth = new Date(item.createdAt).getMonth() + 1;

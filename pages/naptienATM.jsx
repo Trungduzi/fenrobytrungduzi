@@ -7,7 +7,7 @@ export default function NapTienATM() {
         branch: "BẮC NINH",
     };
 
-    const fakeTransactionHistory = []; // Dữ liệu giao dịch (nếu có)
+    const fakeTransactionHistory = [];
 
     return (
         <div>

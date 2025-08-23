@@ -1,5 +1,17 @@
 import { use } from "react";
 
+export const updateN = async (id) => {
+    try {
+        const res = await fetch(`https://nrorealbytrungduzi-production.up.railway.app/api/user/?id=${id}`);
+        if (!res.ok) throw new Error("Fetch user failed");
+        const data = await res.json();
+        return data;
+    } catch (err) {
+        console.error("Lỗi khi gọi API:", err);
+        return null;
+    }
+}
+
 export const getUser = async () => {
     try {
         const res = await fetch('https://nrorealbytrungduzi-production.up.railway.app/api/get-user');
@@ -28,7 +40,7 @@ export const createUser = async (userData) => {
         return data;
     } catch (error) {
         console.error('Lỗi createUser:', error.message);
-        return { error: error.message }; // 👈 Trả về cho frontend dễ xử lý
+        return { error: error.message };
     }
 };
 
@@ -103,7 +115,6 @@ export const getHistory = async (userId) => {
 
 export const getHistoryCard = async (userId) => {
     try {
-        // console.log("Received userId:", userId);
         const res = await fetch(`https://nrorealbytrungduzi-production.up.railway.app/api/get-historycard?id=${userId}`);
 
         if (!res.ok) {
@@ -121,7 +132,6 @@ export const getHistoryCard = async (userId) => {
 };
 
 export const resetPassword = async (useData) => {
-    // console.log(useData);
     try {
         const res = await fetch("https://nrorealbytrungduzi-production.up.railway.app/api/reset-password", {
             method: "POST",
@@ -146,6 +156,7 @@ export const byCard = async (dataInput, userId) => {
             body: JSON.stringify({ ...dataInput, ...{ id: userId } }),
         })
         const data = await res.json();
+        alert(data.message);
         return data;
     } catch (e) {
         console.log("Lỗi từ ở đây", e);

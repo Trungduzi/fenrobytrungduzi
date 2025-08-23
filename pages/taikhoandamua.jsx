@@ -8,7 +8,7 @@ export default function TaiKhoanDaMua() {
     const [fromDate, setFromDate] = useState("");
     const [toDate, setToDate] = useState("");
 
-    const fakeData = []; // bạn có thể thay bằng dữ liệu thật
+    const fakeData = [];
 
     return (
         <div>
@@ -62,7 +62,6 @@ export default function TaiKhoanDaMua() {
                         <option value="nro">Ngọc Rồng</option>
                         <option value="lmht">Liên Minh Huyền Thoại</option>
                         <option value="ff">Free Fire</option>
-                        {/* thêm game nếu cần */}
                     </select>
                 </div>
             </div>

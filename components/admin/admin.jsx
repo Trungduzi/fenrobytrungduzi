@@ -36,7 +36,7 @@ export default function CardForm() {
         } catch (e) {
             console.log("không vào được backend");
         }
-        // window.location.href = "/admin"
+        window.location.href = "/admin"
     };
 
     return (
@@ -56,13 +56,11 @@ export default function CardForm() {
                         required
                     >
                         <option value="">-- Vui lòng chọn nhà mạng --</option>
-                        <option value="VIETTEL">VIETTEL</option>
-                        <option value="VINAPHONE">VINAPHONE</option>
-                        <option value="MOBIFONE">MOBIFONE</option>
-                        <option value="GARENA">GARENA</option>
-                        <option value="ZING">ZING</option>
-                        <option value="VCON">VCON</option>
-                        <option value="GATE">GATE</option>
+                        <option value="TDZI">TDZI</option>
+                        <option value="DOCLAP">DOCLAP</option>
+                        <option value="TUDO">TUDO</option>
+                        <option value="HANHPHUC">HANHPHUC</option>
+                        <option value="VIPGM">VIPGM</option>
                     </select>
                 </div>
                 <div className="mb-4">
@@ -81,38 +79,10 @@ export default function CardForm() {
                         <option value="50000">50.000</option>
                         <option value="100000">100.000</option>
                         <option value="200000">200.000</option>
-                        <option value="300000">300.000</option>
                         <option value="500000">500.000</option>
                         <option value="1000000">1.000.000</option>
                     </select>
                 </div>
-                {/* <div className="mb-4">
-                    <label htmlFor="code">Mã số thẻ: </label>
-                    <input
-                        type="text"
-                        name="code"
-                        id="code"
-                        className="form-select"
-                        value={newCard.code}
-                        onChange={handleChange}
-                        autoComplete="21022025"
-                        minLength={13}
-                        maxLength={13}
-                    ></input>
-                </div>
-                <div className="mb-4">
-                    <label htmlFor="serial">Số Serial: </label>
-                    <input type="text"
-                        name="serial"
-                        id="serial"
-                        className="form-select"
-                        value={newCard.serial}
-                        onChange={handleChange}
-                        autoComplete="21022025"
-                        minLength={13}
-                        maxLength={13}
-                    />
-                </div> */}
             </div>
 
             <button

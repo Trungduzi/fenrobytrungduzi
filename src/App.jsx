@@ -75,7 +75,7 @@ function App() {
             <Muathe />
           </>}
         />
-        <Route path="/Tamthoi" element={
+        <Route path="/Tam-thoi" element={
           <>
             <Tamthoi />
           </>}

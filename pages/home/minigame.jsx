@@ -42,7 +42,7 @@ const ITEMS = [
 ];
 
 const handleClick = (e) => {
-    e.preventDefault(); // chặn chuyển trang ngay lập tức
+    e.preventDefault();
 
     Swal.fire({
         title: "THÔNG BÁO!",
@@ -63,7 +63,6 @@ const handleClick = (e) => {
 export default function Minigame() {
     return (
         <>
-            {/* <section className="minigame-section"> */}
             <div className="container">
                 <div className="game-grid">
                     {ITEMS.map((it) => (
@@ -92,7 +91,6 @@ export default function Minigame() {
                     ))}
                 </div>
             </div>
-            {/* </section> */}
         </>
     )
 }

@@ -26,7 +26,6 @@ export default function Signin() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Kiểm tra password nhập lại
         if (formData.password !== formData.replayPassword) {
             alert("Mật khẩu không khớp!");
             return;

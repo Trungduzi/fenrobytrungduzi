@@ -98,7 +98,7 @@ export default function ThongTinTaiKhoan() {
                             </tr>
                             <tr>
                                 <th style={styles.th}>Tên tài khoản:</th>
-                                <td style={{ ...styles.td, ...styles.dangerText }}>{userCurrent.username}</td>
+                                <td style={{ ...styles.td, ...styles.dangerText }}>{userCurrent.user}</td>
                             </tr>
                             <tr>
                                 <th style={styles.th}>Số dư tài khoản:</th>
