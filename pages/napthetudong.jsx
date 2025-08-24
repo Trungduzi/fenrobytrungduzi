@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState, useRef } from 'react';
-import { napCard, getHistory } from "../src/app/userApi.js";
+import { napCard, getHistory, getByCard } from "../src/app/userApi.js";
 
 
 export default function NapTheTuDong() {
@@ -9,7 +9,17 @@ export default function NapTheTuDong() {
             width: '100%',
             boxSizing: 'border-box',
             display: 'flex',
-            flexDirection: 'column',
+            flexDirection: 'row',
+            flexWrap: "wrap",
+            gap: "20px",
+        },
+        item: {
+            flex: "1 1 50%",
+            // background: "lightblue",
+            padding: "20px",
+        },
+        item3: {
+            flex: "1 1 100%",
         },
         formBox: {
             width: '100%',
@@ -19,6 +29,17 @@ export default function NapTheTuDong() {
             borderRadius: 4,
             padding: 10,
             marginBottom: 30,
+        },
+        formBox1: {
+            width: '100%',
+            maxWidth: 500,
+            minWidth: 150,
+            backgroundColor: 'white',
+            border: '1px solid #ccc',
+            borderRadius: 4,
+            padding: 10,
+            marginBottom: 30,
+            overflowY: "hidden",
         },
         heading: {
             borderBottom: '3px solid red',
@@ -55,8 +76,16 @@ export default function NapTheTuDong() {
             minHeight: "500px",
             borderCollapse: 'collapse',
         },
+        table1: {
+            width: '100%',
+            minHeight: "200px",
+            borderCollapse: 'collapse',
+        },
         thead: {
             backgroundColor: '#f9f9f9',
+        },
+        thead1: {
+            backgroundColor: '#f2e6e6ff',
         },
         th: {
             fontWeight: 'bold',
@@ -81,6 +110,7 @@ export default function NapTheTuDong() {
     const [historyUser, setHistoryUser] = useState([]);
     const [captcha, setCaptcha] = useState(generateCaptcha());
     const [hideSpan, setHideSpan] = useState(true);
+    const [byedCard, setByedCard] = useState([]);
     const [error, setError] = useState({
         type: '',
         price: '',
@@ -116,7 +146,6 @@ export default function NapTheTuDong() {
         const fetchHistory = async () => {
             try {
                 const res = await getHistory(user.id);
-                console.log(res);
                 setHistoryUser(res);
             } catch (error) {
                 console.error("Lỗi khi lấy lịch sử:", error);
@@ -125,6 +154,22 @@ export default function NapTheTuDong() {
 
         if (user.id) {
             fetchHistory();
+        }
+    }, [user.id]);
+
+    useEffect(() => {
+        const fetchHistoryCard = async () => {
+            try {
+                const res = await getByCard(user.id);
+                console.log(res);
+                setByedCard(res);
+            } catch (error) {
+                console.error("Lỗi khi lấy lịch sử:", error);
+            }
+        };
+
+        if (user.id) {
+            fetchHistoryCard();
         }
     }, [user.id]);
 
@@ -208,7 +253,7 @@ export default function NapTheTuDong() {
 
     return (
         <div style={styles.container}>
-            <div style={styles.formBox}>
+            <div style={{ ...styles.formBox, ...styles.item }}>
                 <h2 style={styles.heading}>NẠP THẺ</h2>
 
                 <form onSubmit={handleSubmit}>
@@ -274,7 +319,33 @@ export default function NapTheTuDong() {
                 </form>
             </div>
 
-            <div style={styles.tableWrapper}>
+            <div style={{ ...styles.formBox1, ...styles.item }}>
+                <h4 style={{ fontWeight: 'bold', marginBottom: '15px' }}>Thẻ Cào Đã Mua</h4>
+                <table style={styles.table1}>
+                    <thead style={styles.thead1}>
+                        <tr>
+                            <th style={styles.th}>STT</th>
+                            <th style={styles.th}>Nhà mạng</th>
+                            <th style={styles.th}>Mã thẻ</th>
+                            <th style={styles.th}>Serial</th>
+                            <th style={styles.th}>Mệnh giá</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {byedCard.slice(0, 9).map((item, index, array) => (
+                            <tr key={index}>
+                                <td style={styles.td} >{array.length - index}</td>
+                                <td style={styles.td}>{item.name}</td>
+                                <td style={styles.td}>{item.code}</td>
+                                <td style={styles.td}>{item.serial}</td>
+                                <td style={styles.td}>{item.price}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+
+            <div style={{ ...styles.tableWrapper, ...styles.item3 }}>
                 <h4 style={{ fontWeight: 'bold', marginBottom: '15px' }}>Lịch sử nạp thẻ</h4>
                 <table style={styles.table}>
                     <thead style={styles.thead}>
@@ -290,7 +361,7 @@ export default function NapTheTuDong() {
                         </tr>
                     </thead>
                     <tbody>
-                        {historyUser.map((item, index, array) => (
+                        {historyUser.slice(0, 5).map((item, index, array) => (
                             <tr key={index}>
                                 <td style={styles.td} >{array.length - index}</td>
                                 <td style={styles.td}>{formatDateTime(item.createdAt)}</td>
