@@ -60,8 +60,7 @@ export default function TaiKhoanDaMua() {
                     <select className="form-select" value={game} onChange={(e) => setGame(e.target.value)}>
                         <option value="">--Tất cả game--</option>
                         <option value="nro">Ngọc Rồng</option>
-                        <option value="lmht">Liên Minh Huyền Thoại</option>
-                        <option value="ff">Free Fire</option>
+                        <option value="lmht">Liên Quân Mobile</option>
                     </select>
                 </div>
             </div>

@@ -50,7 +50,6 @@ export default function Muathe() {
             border: '1px solid #ddd',
             borderRadius: 4,
             padding: '10px',
-            height: "300px",
         },
         table: {
             width: '100%',

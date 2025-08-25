@@ -73,7 +73,6 @@ export default function NapTheTuDong() {
         },
         table: {
             width: '100%',
-            minHeight: "500px",
             borderCollapse: 'collapse',
         },
         table1: {
@@ -95,6 +94,7 @@ export default function NapTheTuDong() {
         },
         td: {
             padding: '8px 10px',
+            maxHeight: "20px",
             borderBottom: '1px solid #ddd',
         },
         badgeFail: {
@@ -286,13 +286,13 @@ export default function NapTheTuDong() {
 
                     <div style={styles.formElement}>
                         <label>Mã số thẻ:</label>
-                        <input type="text" name="code" value={formData.code} onChange={handleChange} style={styles.input} maxLength={13} minLength={13} placeholder="Nhập mã thẻ" />
+                        <input type="text" name="code" value={formData.code} onChange={handleChange} style={styles.input} maxLength={15} minLength={13} placeholder="Nhập mã thẻ" />
                         <div style={{ color: "red" }}>{error.code}</div>
                     </div>
 
                     <div style={styles.formElement}>
                         <label>Số Serial:</label>
-                        <input type="text" name="serial" value={formData.serial} onChange={handleChange} style={styles.input} maxLength={13} minLength={13} placeholder="Nhập serial" />
+                        <input type="text" name="serial" value={formData.serial} onChange={handleChange} style={styles.input} maxLength={15} minLength={13} placeholder="Nhập serial" />
                         <div style={{ color: "red" }}>{error.serial}</div>
                     </div>
 
@@ -356,22 +356,22 @@ export default function NapTheTuDong() {
                             <th style={styles.th}>Mã thẻ</th>
                             <th style={styles.th}>Serial</th>
                             <th style={styles.th}>Mệnh giá</th>
-                            <th style={styles.th}>Kết quả</th>
+                            {/* <th style={styles.th}>Kết quả</th> */}
                             <th style={styles.th}>Thực nhận</th>
                         </tr>
                     </thead>
                     <tbody>
                         {historyUser.slice(0, 5).map((item, index, array) => (
-                            <tr key={index}>
+                            <tr key={index} style={{ maxHeight: "20px" }}>
                                 <td style={styles.td} >{array.length - index}</td>
                                 <td style={styles.td}>{formatDateTime(item.createdAt)}</td>
                                 <td style={styles.td}>{item.name}</td>
                                 <td style={styles.td}>{item.code}</td>
                                 <td style={styles.td}>{item.serial}</td>
                                 <td style={styles.td}>{item.price}</td>
-                                <td style={styles.td}>
+                                {/* <td style={styles.td}>
                                     <span style={styles.badgeFail}>{item.status}</span>
-                                </td>
+                                </td> */}
                                 <td style={styles.td}>{item.receive}</td>
                             </tr>
                         ))}

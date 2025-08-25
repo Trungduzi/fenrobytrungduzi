@@ -87,39 +87,6 @@ export default function NapTienATM() {
                     </li>
                 </ul>
             </div>
-
-            <table className="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Thời gian</th>
-                        <th>Số tiền</th>
-                        <th>Thực nhận</th>
-                        <th>Trạng thái</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {fakeTransactionHistory.length === 0 ? (
-                        <tr>
-                            <td colSpan="4" className="text-center text-danger fw-bold">
-                                Không có dữ liệu!
-                            </td>
-                        </tr>
-                    ) : (
-                        fakeTransactionHistory.map((item, index) => (
-                            <tr key={index}>
-                                <td>{item.time}</td>
-                                <td>{item.amount}</td>
-                                <td>{item.received}</td>
-                                <td>
-                                    <span className={`badge ${item.status === "Thành công" ? "bg-success" : "bg-danger"}`}>
-                                        {item.status}
-                                    </span>
-                                </td>
-                            </tr>
-                        ))
-                    )}
-                </tbody>
-            </table>
         </div>
     );
 }

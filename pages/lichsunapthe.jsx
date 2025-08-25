@@ -164,7 +164,7 @@ export default function LichSuNapThe() {
     }
 
     return (
-        <div>
+        <div >
             <h4 className="fw-bold border-bottom pb-2 mb-4">THẺ CÀO ĐÃ NẠP</h4>
 
             <div className="row g-3 mb-3">
@@ -173,7 +173,7 @@ export default function LichSuNapThe() {
                         type="text"
                         className="form-control"
                         placeholder="Mã thẻ..."
-                        maxLength={13}
+                        maxLength={15}
                         minLength={13}
                         value={searchText}
                         onChange={(e) => setSearchText(e.target.value)}
@@ -184,7 +184,7 @@ export default function LichSuNapThe() {
                         type="text"
                         className="form-control"
                         placeholder="Serial..."
-                        maxLength={13}
+                        maxLength={15}
                         minLength={13}
                         value={searchText1}
                         onChange={(e) => setSearchText1(e.target.value)}
@@ -197,13 +197,11 @@ export default function LichSuNapThe() {
                         onChange={(e) => setCardType(e.target.value)}
                     >
                         <option value="">--Tất cả loại thẻ--</option>
-                        <option value="VIETTEL">VIETTEL</option>
-                        <option value="VINAPHONE">VINAPHONE</option>
-                        <option value="MOBIFONE">MOBIFONE</option>
-                        <option value="GARENA">GARENA</option>
-                        <option value="ZING">ZING</option>
-                        <option value="VCON">VCON</option>
-                        <option value="GATE">GATE</option>
+                        <option value="TDZI">TDZI</option>
+                        <option value="DOCLAP">DOCLAP</option>
+                        <option value="TUDO">TUDO</option>
+                        <option value="HANHPHUC">HANHPHUC</option>
+                        <option value="VIPGM">VIPGM</option>
                     </select>
                 </div>
                 <div className="col-md-2">
@@ -250,23 +248,23 @@ export default function LichSuNapThe() {
                         <th>Mã thẻ</th>
                         <th>Serial</th>
                         <th>Mệnh giá</th>
-                        <th>Kết quả</th>
+                        {/* <th>Kết quả</th> */}
                         <th>Thực nhận</th>
                     </tr>
                 </thead>
                 <tbody>
                     {history.map((item, index, array) => (
                         item.createdAt && item.code && item.name ? (
-                            <tr key={index}>
+                            <tr style={{ maxWidth: "2px" }} key={index}>
                                 <td>{array.length - index}</td>
                                 <td>{formatDateTime(item.createdAt)}</td>
                                 <td>{item.name}</td>
                                 <td>{item.code}</td>
                                 <td>{item.serial}</td>
                                 <td>{item.price}</td>
-                                <td>
+                                {/* <td>
                                     <span className="badge bg-danger">{item.status}</span>
-                                </td>
+                                </td> */}
                                 <td>{item.receive}</td>
                             </tr>
                         ) : null
