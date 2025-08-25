@@ -77,7 +77,7 @@ export default function Login() {
                         >
                             Sign In
                         </button>
-                        <a href="/Tamthoi" className="" style={{ color: "black", paddingLeft: "20px", textDecoration: "underline", color: "red" }}> Forget password</a>
+                        <a href="/Tamthoi" className="" style={{ paddingLeft: "20px", textDecoration: "underline", color: "red" }}> Forget password</a>
                     </div>
                 </form>
                 <p className="text-center text-gray-500 text-xs">

@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import { resetPassword } from "../src/app/userApi";
+import { Eye, EyeOff } from "lucide-react";
 
 export default function DoiMatKhau() {
+    const [showPassword, setShowPassword] = useState(false);
+    const [showPassword1, setShowPassword1] = useState(false);
+    const [showPassword2, setShowPassword2] = useState(false);
     const [password, setPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -86,13 +90,22 @@ export default function DoiMatKhau() {
                                     Mật khẩu cũ:
                                 </label>
                                 <input
-                                    type="password"
+                                    type={showPassword ? "text" : "password"}
                                     className="col-md-6 ps-2 pt-1 pb-1"
                                     id="password"
                                     placeholder="Mật khẩu cũ"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
+                                    style={{ position: "relative" }}
                                 />
+                                <button
+                                    type="button"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    className="ms-2 mt-1 mb-1"
+                                    style={{ background: "white", border: "none", position: "absolute", transform: "translateX(-32px)", fontWeight: 10 }}
+                                >
+                                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                                </button>
                                 <div style={{ display: hideSpan ? "none" : "block", color: "red" }}>{error.old}</div>
                             </div>
                             <div className="col-md-12 m-3">
@@ -103,13 +116,21 @@ export default function DoiMatKhau() {
                                     Mật khẩu mới:
                                 </label>
                                 <input
-                                    type="password"
+                                    type={showPassword1 ? "text" : "password"}
                                     className="col-md-6 ps-2 pt-1 pb-1"
                                     id="password"
                                     placeholder="Mật khẩu mới"
                                     value={newPassword}
                                     onChange={(e) => setNewPassword(e.target.value)}
                                 />
+                                <button
+                                    type="button"
+                                    onClick={() => setShowPassword1(!showPassword1)}
+                                    className="ms-2 mt-1 mb-1"
+                                    style={{ background: "white", border: "none", position: "absolute", transform: "translateX(-32px)", fontWeight: 10 }}
+                                >
+                                    {showPassword1 ? <EyeOff size={20} /> : <Eye size={20} />}
+                                </button>
                                 <div style={{ display: hideSpan ? "none" : "block", color: "red" }}>{error.new}</div>
                             </div>
                             <div className="col-md-12 m-3">
@@ -120,13 +141,21 @@ export default function DoiMatKhau() {
                                     Confỉrm pass:
                                 </label>
                                 <input
-                                    type="password"
+                                    type={showPassword2 ? "text" : "password"}
                                     className="col-md-6 ps-2 pt-1 pb-1"
                                     id="password"
                                     placeholder="Xác nhận mật khẩu"
                                     value={confirmPassword}
                                     onChange={(e) => setConfirmPassword(e.target.value)}
                                 />
+                                <button
+                                    type="button"
+                                    onClick={() => setShowPassword2(!showPassword2)}
+                                    className="ms-2 mt-1 mb-1"
+                                    style={{ background: "white", border: "none", position: "absolute", transform: "translateX(-32px)", fontWeight: 10 }}
+                                >
+                                    {showPassword2 ? <EyeOff size={20} /> : <Eye size={20} />}
+                                </button>
                                 <div style={{ display: hideSpan ? "none" : "block", color: "red" }}>{error.confirm}</div>
                             </div>
                             <div className="col-6 offset-3 p-1">

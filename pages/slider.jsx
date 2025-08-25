@@ -6,6 +6,7 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import './slider.scss';
 import { useState, useEffect } from 'react';
 import { getUser } from '../src/app/userApi';
+import Swal from 'sweetalert2';
 
 export default function Slide() {
     const images = [

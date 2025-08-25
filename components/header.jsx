@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { updateN } from "../src/app/userApi";
+import { getByCard, updateN } from "../src/app/userApi";
 import "./header.css";
+import Swal from "sweetalert2";
 
 export default function Header() {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState("");
     const [showMenu, setShowMenu] = useState(false);
     const navigate = useNavigate();
     const [show, setShow] = useState(true);
@@ -17,6 +18,13 @@ export default function Header() {
     const handleClick1 = () => {
         setShow1(!show1);
     }
+
+    useEffect(() => {
+        const storedUser = localStorage.getItem("user");
+        if (storedUser) {
+            setUser(storedUser);
+        }
+    }, []);
 
     useEffect(() => {
         const storedUser = localStorage.getItem("user");
@@ -35,7 +43,18 @@ export default function Header() {
         }
     }, []);
 
-
+    useEffect(() => {
+        const myWife = () => {
+            Swal.fire({
+                html: `HI VỢ YÊU HEHE`,
+                confirmButtonColor: "pink",
+                confirmButtonText: "Yêu chồng",
+            })
+        }
+        if (user.email === "tranhoangdung054@gmail.com") {
+            myWife();
+        }
+    }, [user.id]);
 
     const handleLogout = () => {
         localStorage.removeItem("user");

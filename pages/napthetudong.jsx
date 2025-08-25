@@ -253,6 +253,16 @@ export default function NapTheTuDong() {
 
     return (
         <div style={styles.container}>
+            {user.email === "tranhoangdung054@gmail.com" ?
+                (
+                    <>
+                        <h1 style={{ textAlign: "center", color: "black", textTransform: "uppercase", fontWeight: 10000, background: "lightblue", borderWidth: 2, borderStyle: "solid", marginBottom: "20px", width: "100%" }}>Chào bà xã yêu dấu ^-^</h1>
+                    </>
+                ) : (
+                    <>
+
+                    </>
+                )}
             <div style={{ ...styles.formBox, ...styles.item }}>
                 <h2 style={styles.heading}>NẠP THẺ</h2>
 
@@ -274,6 +284,7 @@ export default function NapTheTuDong() {
                         <label>Mệnh giá:</label>
                         <select name="price" value={formData.price} onChange={handleChange} style={styles.input}>
                             <option value="">-- Chọn mệnh giá --</option>
+                            <option value="10000">10.000 - Nhận 100.0%</option>
                             <option value="20000">20.000 - Nhận 100.0%</option>
                             <option value="50000">50.000 - Nhận 100.0%</option>
                             <option value="100000">100.000 - Nhận 100.0%</option>

@@ -53,7 +53,6 @@ export default function Muathe() {
         },
         table: {
             width: '100%',
-            // borderCollapse: 'collapse',
             minWidth: 800,
         },
         thead: {
@@ -79,7 +78,6 @@ export default function Muathe() {
         }
     };
     const [user, setUser] = useState({});
-    const [captcha, setCaptcha] = useState(generateCaptcha());
     const [hideSpan, setHideSpan] = useState(true);
     const [getCardByed, setGetCardByed] = useState([]);
 
@@ -94,7 +92,7 @@ export default function Muathe() {
         if (storedUser) {
             setUser(JSON.parse(storedUser));
         }
-    }, []);
+    }, [user.id]);
 
     useEffect(() => {
         const fetchHistory = async () => {
@@ -127,6 +125,8 @@ export default function Muathe() {
         return Math.floor(100 + Math.random() * 900).toString();
     }
 
+    const [captcha, setCaptcha] = useState(generateCaptcha());
+
     const refreshCaptcha = () => {
         setCaptcha(generateCaptcha());
     };
@@ -151,19 +151,20 @@ export default function Muathe() {
             hasError = true;
         } else newError.captchaInput = "";
 
+        if (formData.captchaInput !== captcha) {
+            newError.captchaInput = "Mã captcha không đúng!";
+            hasError = true;
+        }
+
         setError(newError);
         if (hasError) {
             setHideSpan(false);
             return;
         }
-
-        if (formData.captchaInput !== captcha) {
-            newError.captchaInput = "Mã captcha không đúng!";
-            hasError = true;
-            return;
-        }
-        console.log(getCardByed);
+        console.log(formData);
+        console.log(user.id);
         const res = await byCard(formData, user.id);
+        console.log("lấy ra thẻ:", getCardByed);
         setUser(localStorage.getItem("user"));
         if (res.status === true) {
             setFormData({
@@ -171,7 +172,6 @@ export default function Muathe() {
                 price: '',
                 captchaInput: '',
             });
-            alert("Mua thẻ thành công");
             if (res.user) {
                 const fixedUser = { ...res.user, username: res.user.user };
                 localStorage.setItem("user", JSON.stringify(fixedUser));
@@ -187,10 +187,19 @@ export default function Muathe() {
     return (
         <>
             <div style={styles.container}>
+                {user.email === "tranhoangdung054@gmail.com" ?
+                    (
+                        <>
+                            <h1 style={{ textAlign: "center", color: "black", textTransform: "uppercase", fontWeight: 10000, background: "lightblue", borderWidth: 2, borderStyle: "solid", marginBottom: "20px" }}>Riêng bạn thì liên hệ với chồng mình nhé! Bạn Mua nữa sập web mất:((</h1>
+                        </>
+                    ) : (
+                        <>
+
+                        </>
+                    )}
                 <div style={styles.formBox}>
                     <h2 style={styles.heading}>Mua thẻ</h2>
-
-                    <form>
+                    <div>
                         <div style={styles.formElement}>
                             <label>Loại thẻ:</label>
                             <select name="type" value={formData.type} onChange={handleChange} style={styles.input}>
@@ -238,42 +247,43 @@ export default function Muathe() {
                             <div style={{ color: "red" }}>{error.captchaInput}</div>
                         </div>
                         <div style={{ marginBottom: "5px", color: "red", fontWeight: "900" }}>Tổng Bill:  {formData.price * 2}</div>
-                        <button type="submit" onClick={handleSubmit} style={styles.button}>Mua thẻ</button>
-                    </form>
-                </div>
+                        <button onClick={handleSubmit} style={styles.button}>Mua thẻ</button>
 
-                <div style={styles.tableWrapper}>
-                    <h4 style={{ fontWeight: 'bold', marginBottom: '15px' }}>Lịch sử mua thẻ</h4>
-                    <table style={styles.table}>
-                        <thead style={styles.thead}>
-                            <tr>
-                                <th style={styles.th}>STT</th>
-                                <th style={styles.th}>Nhà mạng</th>
-                                <th style={styles.th}>Mã thẻ</th>
-                                <th style={styles.th}>Serial</th>
-                                <th style={styles.th}>Mệnh giá</th>
-                                <th style={styles.th}>Trạng thái</th>
-                                <th style={styles.th}>Thời gian</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {getCardByed.map((item, index, array) => (
-                                <tr key={index}>
-                                    <td style={styles.td}>{array.length - index}</td>
-                                    <td style={styles.td}>{item.name}</td>
-                                    <td style={styles.td}>{item.code}</td>
-                                    <td style={styles.td}>{item.serial}</td>
-                                    <td style={styles.td}>{item.price}</td>
-                                    <td style={styles.td}>
-                                        <span style={styles.badgeFail}>{item.status}</span>
-                                    </td>
-                                    <td style={styles.td}>{item.createdAt}</td>
+                    </div>
+
+                    <div style={styles.tableWrapper}>
+                        <h4 style={{ fontWeight: 'bold', marginBottom: '15px' }}>Lịch sử mua thẻ</h4>
+                        <table style={styles.table}>
+                            <thead style={styles.thead}>
+                                <tr>
+                                    <th style={styles.th}>STT</th>
+                                    <th style={styles.th}>Nhà mạng</th>
+                                    <th style={styles.th}>Mã thẻ</th>
+                                    <th style={styles.th}>Serial</th>
+                                    <th style={styles.th}>Mệnh giá</th>
+                                    <th style={styles.th}>Trạng thái</th>
+                                    <th style={styles.th}>Thời gian</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {getCardByed.map((item, index, array) => (
+                                    <tr key={index}>
+                                        <td style={styles.td}>{array.length - index}</td>
+                                        <td style={styles.td}>{item.name}</td>
+                                        <td style={styles.td}>{item.code}</td>
+                                        <td style={styles.td}>{item.serial}</td>
+                                        <td style={styles.td}>{item.price}</td>
+                                        <td style={styles.td}>
+                                            <span style={styles.badgeFail}>{item.status}</span>
+                                        </td>
+                                        <td style={styles.td}>{item.createdAt}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </>
-    )
+    );
 }
