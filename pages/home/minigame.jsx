@@ -2,6 +2,9 @@ import React from "react";
 import { useState, useEffect } from "react";
 import "./minigame.scss"
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+
+
 const ITEMS = [
     {
         id: 1,
@@ -19,7 +22,7 @@ const ITEMS = [
         priceOld: 20000,
         priceNew: 8000,
         img: "/giveaway.gif",
-        link: "/",
+        link: "/quay-vangnro",
     },
     {
         id: 3,
@@ -97,6 +100,25 @@ const handleClick = (e) => {
 };
 
 export default function Minigame() {
+    const [user, setUser] = useState(null);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const storedUser = localStorage.getItem("user");
+        if (storedUser) {
+            setUser(storedUser);
+        }
+    }, []);
+
+    const handleRedirect = (path) => {
+        if (user) {
+            navigate(path);
+        }
+        else {
+            navigate("/login");
+        }
+    }
+
     return (
         <>
             <div className="container">
@@ -122,11 +144,19 @@ export default function Minigame() {
                                 <span className="price new">{it.priceNew.toLocaleString("vi-VN")} đ</span>
                             </div>
 
-                            <a href={it.link} onClick={handleClick} className="buy-btn">Quay Ngay</a>
+                            {(it.id == 2) ? (
+                                <>
+                                    <a onClick={() => { handleRedirect("/quay-vangnro") }} className="buy-btn">Mua Ngay</a>
+                                </>
+                            ) : (
+                                <>
+                                    <a onClick={handleClick} className="buy-btn">Mua Ngay</a>
+                                </>
+                            )}
                         </article>
                     ))}
                 </div>
-            </div>
+            </div >
         </>
     )
 }

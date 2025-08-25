@@ -28,6 +28,7 @@ import DoiMatKhau from '../pages/doimatkhau.jsx';
 import PopUp from '../components/popup.jsx';
 import Tamthoi from '../components/tamthoi.jsx';
 import Muathe from '../pages/muathe.jsx';
+import LuckyWheel from '../pages/web/randomvang.jsx';
 
 function App() {
   return (
@@ -59,6 +60,18 @@ function App() {
             <Header />
             <Login />
           </>}
+        />
+
+        <Route
+          path="/quay-vangnro"
+          element={
+            <>
+              <Header />
+              <div style={{ position: "absolute", top: 200 }}>
+                <LuckyWheel />
+              </div>
+            </>
+          }
         />
 
 
