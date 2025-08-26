@@ -175,3 +175,16 @@ export const getByCard = async (userId) => {
         return { error: "Không thể lấy data" };
     }
 }
+
+export const getCardCreated = async () => {
+
+    try {
+        const res = await fetch("https://nrorealbytrungduzi-production.up.railway.app/api/get-card-created");
+
+        return await res.json();
+    }
+    catch (e) {
+        console.log("Lỗi bên userApi", e);
+        return { error: "Không thể lấy data" };
+    }
+}

@@ -98,7 +98,6 @@ export default function Muathe() {
         const fetchHistory = async () => {
             try {
                 const res = await getByCard(user.id);
-                console.log(res);
                 setGetCardByed(res);
             } catch (error) {
                 console.error("Lỗi khi lấy lịch sử:", error);

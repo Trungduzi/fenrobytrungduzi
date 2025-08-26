@@ -5,9 +5,11 @@ import Tamthoi from "../../components/tamthoi";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { getCardCreated } from "../../src/app/userApi";
 
 export default function Muathecao() {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState([]);
+    const [number, setNumber] = useState([]);
     const navigate = useNavigate();
     const ITEMS = [
         {
@@ -38,6 +40,16 @@ export default function Muathecao() {
             link: "/Tam-thoi",
         },
     ];
+
+    useEffect(() => {
+        const fetchNumberCard = async () => {
+            const res = await getCardCreated();
+            setNumber(res.number);
+        }
+        if (!user.id) {
+            fetchNumberCard()
+        }
+    }, [user.id]);
 
     useEffect(() => {
         const storedUser = localStorage.getItem("user");
@@ -84,15 +96,19 @@ export default function Muathecao() {
 
                             <h3 className="title">{it.title}</h3>
 
-                            <div className="meta">
-                                <span className="plays">Số lượng: {it.plays.toLocaleString("vi-VN")}</span>
-                            </div>
+
                             {(it.id < 2) ? (
                                 <>
+                                    <div className="meta">
+                                        <span className="plays" style={{ color: "white" }}>Số lượng: {number.toLocaleString("vi-VN")}</span>
+                                    </div>
                                     <a onClick={() => handleRedirect("/mua-the")} className="buy-btn">Mua Ngay</a>
                                 </>
                             ) : (
                                 <>
+                                    <div className="meta">
+                                        <span className="plays" style={{ color: "white" }}>Số lượng: {it.plays.toLocaleString("vi-VN")}</span>
+                                    </div>
                                     <a onClick={handleClick} className="buy-btn">Mua Ngay</a>
                                 </>
                             )}
