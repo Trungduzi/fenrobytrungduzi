@@ -192,7 +192,7 @@ export default function TheCaoDaMua() {
             </div>
 
             <div className="table-responsive">
-                <table className="table">
+                <table className="table" style={{ position: 'relative', minHeight: "100px" }}>
                     <thead className="table-light">
                         <tr>
                             <th colSpan={1} style={{ maxWidth: 200 }}>Thời gian</th>
@@ -205,29 +205,36 @@ export default function TheCaoDaMua() {
                         </tr>
                     </thead>
                     <tbody>
-                        {Object.entries(groupedHistory).map(([day, items], index) => (
-                            <React.Fragment key={index}>
-                                <tr>
-                                    <td
-                                        style={{ textTransform: "uppercase", fontWeight: "700", fontSize: 17, minWidth: 170, maxWidth: 200 }}
-                                        colSpan={1}
-                                    >
-                                        Ngày {day}
-                                    </td>
-                                </tr>
-                                {items.map((item, idx) => (
-                                    <tr key={idx}>
-                                        <td colSpan={1} style={{ maxWidth: 200 }}>{formatDateTime(item.createdAt)}</td>
-                                        <td>{items.length - idx}</td>
-                                        <td>{item.name}</td>
-                                        <td>{item.code}</td>
-                                        <td>{item.serial}</td>
-                                        <td>{item.price}</td>
-                                        <td style={{ background: item.status === "Mới" ? "green " : "red", color: "white" }}>{item.status}</td>
+                        {(Object.entries(groupedHistory).length !== 0) ? (<>
+                            {Object.entries(groupedHistory).map(([day, items], index) => (
+                                <React.Fragment key={index}>
+                                    <tr>
+                                        <td
+                                            style={{ textTransform: "uppercase", fontWeight: "700", fontSize: 17, minWidth: 170, maxWidth: 200 }}
+                                            colSpan={1}
+                                        >
+                                            Ngày {day}
+                                        </td>
                                     </tr>
-                                ))}
-                            </React.Fragment>
-                        ))}
+                                    {items.map((item, idx) => (
+                                        <tr key={idx}>
+                                            <td colSpan={1} style={{ maxWidth: 200 }}>{formatDateTime(item.createdAt)}</td>
+                                            <td>{items.length - idx}</td>
+                                            <td>{item.name}</td>
+                                            <td>{item.code}</td>
+                                            <td>{item.serial}</td>
+                                            <td>{item.price}</td>
+                                            <td style={{ background: item.status === "Mới" ? "green " : "red", color: "white" }}>{item.status}</td>
+                                        </tr>
+                                    ))}
+                                </React.Fragment>
+                            ))}
+                        </>
+                        ) : (
+                            <>
+                                <tr style={{ textAlign: "center", width: "100%", position: "absolute", height: "20px" }} ><h5><b style={{ color: "red" }}>Không có data!</b></h5></tr>
+                            </>
+                        )}
                     </tbody>
                 </table>
             </div>

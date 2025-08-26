@@ -239,7 +239,7 @@ export default function LichSuNapThe() {
                 <button onClick={handleSearch} className="btn btn-info">Tất cả</button>
             </div>
 
-            <table className="table table-bordered">
+            <table className="table table-bordered" style={{ position: "relative" }}>
                 <thead>
                     <tr>
                         <th>STT</th>
@@ -253,22 +253,28 @@ export default function LichSuNapThe() {
                     </tr>
                 </thead>
                 <tbody>
-                    {history.map((item, index, array) => (
-                        item.createdAt && item.code && item.name ? (
-                            <tr style={{ maxWidth: "2px" }} key={index}>
-                                <td>{array.length - index}</td>
-                                <td>{formatDateTime(item.createdAt)}</td>
-                                <td>{item.name}</td>
-                                <td>{item.code}</td>
-                                <td>{item.serial}</td>
-                                <td>{item.price}</td>
-                                {/* <td>
+                    {(history.length !== 0) ? (
+                        <>
+                            {history.map((item, index, array) => (
+                                item.createdAt && item.code && item.name ? (
+                                    <tr style={{ maxWidth: "2px" }} key={index}>
+                                        <td>{array.length - index}</td>
+                                        <td>{formatDateTime(item.createdAt)}</td>
+                                        <td>{item.name}</td>
+                                        <td>{item.code}</td>
+                                        <td>{item.serial}</td>
+                                        <td>{item.price}</td>
+                                        {/* <td>
                                     <span className="badge bg-danger">{item.status}</span>
                                 </td> */}
-                                <td>{item.receive}</td>
-                            </tr>
-                        ) : null
-                    ))}
+                                        <td>{item.receive}</td>
+                                    </tr>
+                                ) : null
+                            ))}
+                        </>
+                    ) : (
+                        <tr style={{ textAlign: "center", width: "100%", position: "absolute" }} ><h5><b style={{ color: "red" }}>Không có data!</b></h5></tr>
+                    )}
                 </tbody>
             </table>
         </div>

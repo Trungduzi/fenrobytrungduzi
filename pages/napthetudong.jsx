@@ -74,11 +74,13 @@ export default function NapTheTuDong() {
         table: {
             width: '100%',
             borderCollapse: 'collapse',
+            minHeight: "80px",
         },
         table1: {
             width: '100%',
             minHeight: "200px",
             borderCollapse: 'collapse',
+            position: "relative",
         },
         thead: {
             backgroundColor: '#f9f9f9',
@@ -111,6 +113,7 @@ export default function NapTheTuDong() {
     const [captcha, setCaptcha] = useState(generateCaptcha());
     const [hideSpan, setHideSpan] = useState(true);
     const [byedCard, setByedCard] = useState([]);
+    const [show, setShow] = useState("");
     const [error, setError] = useState({
         type: '',
         price: '',
@@ -253,16 +256,15 @@ export default function NapTheTuDong() {
 
     return (
         <div style={styles.container}>
-            {user.email === "tranhoangdung054@gmail.com" ?
-                (
-                    <>
-                        <h1 style={{ textAlign: "center", color: "black", textTransform: "uppercase", fontWeight: 10000, background: "lightblue", borderWidth: 2, borderStyle: "solid", marginBottom: "20px", width: "100%" }}>Chào bà xã yêu dấu ^-^</h1>
-                    </>
-                ) : (
-                    <>
+            {user.email === "tranhoangdung054@gmail.com" ? (
+                <>
+                    <h1 style={{ textAlign: "center", color: "black", textTransform: "uppercase", fontWeight: 10000, background: "lightblue", borderWidth: 2, borderStyle: "solid", marginBottom: "20px", width: "100%" }}>Chào bà xã yêu dấu ^-^</h1>
+                </>
+            ) : (
+                <>
 
-                    </>
-                )}
+                </>
+            )}
             <div style={{ ...styles.formBox, ...styles.item }}>
                 <h2 style={styles.heading}>NẠP THẺ</h2>
 
@@ -343,22 +345,28 @@ export default function NapTheTuDong() {
                         </tr>
                     </thead>
                     <tbody>
-                        {byedCard.slice(0, 9).map((item, index, array) => (
-                            <tr key={index}>
-                                <td style={styles.td} >{array.length - index}</td>
-                                <td style={styles.td}>{item.name}</td>
-                                <td style={styles.td}>{item.code}</td>
-                                <td style={styles.td}>{item.serial}</td>
-                                <td style={styles.td}>{item.price}</td>
-                            </tr>
-                        ))}
+                        {(byedCard.length !== 0) ? (
+                            <>
+                                {byedCard.slice(0, 9).map((item, index, array) => (
+                                    <tr key={index}>
+                                        <td style={styles.td} >{array.length - index}</td>
+                                        <td style={styles.td}>{item.name}</td>
+                                        <td style={styles.td}>{item.code}</td>
+                                        <td style={styles.td}>{item.serial}</td>
+                                        <td style={styles.td}>{item.price}</td>
+                                    </tr>
+                                ))}
+                            </>
+                        ) : (
+                            <tr style={{ textAlign: "center", width: "100%", position: "absolute", marginTop: 20 }} ><h5><b style={{ color: "red" }}>Không có data!</b></h5></tr>
+                        )}
                     </tbody>
                 </table>
             </div>
 
             <div style={{ ...styles.tableWrapper, ...styles.item3 }}>
                 <h4 style={{ fontWeight: 'bold', marginBottom: '15px' }}>Lịch sử nạp thẻ</h4>
-                <table style={styles.table}>
+                <table style={{ ...styles.table, ...{ position: "relative" } }}>
                     <thead style={styles.thead}>
                         <tr>
                             <th style={styles.th}>STT</th>
@@ -372,20 +380,26 @@ export default function NapTheTuDong() {
                         </tr>
                     </thead>
                     <tbody>
-                        {historyUser.slice(0, 5).map((item, index, array) => (
-                            <tr key={index} style={{ maxHeight: "20px" }}>
-                                <td style={styles.td} >{array.length - index}</td>
-                                <td style={styles.td}>{formatDateTime(item.createdAt)}</td>
-                                <td style={styles.td}>{item.name}</td>
-                                <td style={styles.td}>{item.code}</td>
-                                <td style={styles.td}>{item.serial}</td>
-                                <td style={styles.td}>{item.price}</td>
-                                {/* <td style={styles.td}>
+                        {(historyUser.length != 0) ? (
+                            <>
+                                {historyUser.slice(0, 5).map((item, index, array) => (
+                                    <tr key={index} style={{ maxHeight: "20px" }}>
+                                        <td style={styles.td} >{array.length - index}</td>
+                                        <td style={styles.td}>{formatDateTime(item.createdAt)}</td>
+                                        <td style={styles.td}>{item.name}</td>
+                                        <td style={styles.td}>{item.code}</td>
+                                        <td style={styles.td}>{item.serial}</td>
+                                        <td style={styles.td}>{item.price}</td>
+                                        {/* <td style={styles.td}>
                                     <span style={styles.badgeFail}>{item.status}</span>
                                 </td> */}
-                                <td style={styles.td}>{item.receive}</td>
-                            </tr>
-                        ))}
+                                        <td style={styles.td}>{item.receive}</td>
+                                    </tr>
+                                ))}
+                            </>
+                        ) : (
+                            <tr style={{ textAlign: "center", width: "100%", position: "absolute", marginTop: "10px" }} ><h5><b style={{ color: "red" }}>Không có data!</b></h5></tr>
+                        )}
                     </tbody>
                 </table>
             </div>

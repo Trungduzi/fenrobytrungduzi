@@ -253,7 +253,7 @@ export default function Muathe() {
 
                     <div style={styles.tableWrapper}>
                         <h4 style={{ fontWeight: 'bold', marginBottom: '15px' }}>Lịch sử mua thẻ</h4>
-                        <table style={styles.table}>
+                        <table style={{ ...styles.table, ...{ position: "relative" } }}>
                             <thead style={styles.thead}>
                                 <tr>
                                     <th style={styles.th}>STT</th>
@@ -266,19 +266,27 @@ export default function Muathe() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {getCardByed.map((item, index, array) => (
-                                    <tr key={index}>
-                                        <td style={styles.td}>{array.length - index}</td>
-                                        <td style={styles.td}>{item.name}</td>
-                                        <td style={styles.td}>{item.code}</td>
-                                        <td style={styles.td}>{item.serial}</td>
-                                        <td style={styles.td}>{item.price}</td>
-                                        <td style={styles.td}>
-                                            <span style={styles.badgeFail}>{item.status}</span>
-                                        </td>
-                                        <td style={styles.td}>{item.createdAt}</td>
-                                    </tr>
-                                ))}
+                                {(getCardByed.length != 0) ? (
+                                    <>
+                                        {getCardByed.map((item, index, array) => (
+                                            <tr key={index}>
+                                                <td style={styles.td}>{array.length - index}</td>
+                                                <td style={styles.td}>{item.name}</td>
+                                                <td style={styles.td}>{item.code}</td>
+                                                <td style={styles.td}>{item.serial}</td>
+                                                <td style={styles.td}>{item.price}</td>
+                                                <td style={styles.td}>
+                                                    <span style={styles.badgeFail}>{item.status}</span>
+                                                </td>
+                                                <td style={styles.td}>{item.createdAt}</td>
+                                            </tr>
+                                        ))}
+                                    </>
+                                ) : (
+                                    <>
+                                        <tr style={{ textAlign: "center", width: "100%", textTransform: "uppercase", position: "absolute" }} ><h5><b>Không có data</b></h5></tr>
+                                    </>
+                                )}
                             </tbody>
                         </table>
                     </div>
