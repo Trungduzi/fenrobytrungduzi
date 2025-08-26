@@ -252,7 +252,9 @@ export default function Muathe() {
 
                     <div style={styles.tableWrapper}>
                         <h4 style={{ fontWeight: 'bold', marginBottom: '15px' }}>Lịch sử mua thẻ</h4>
-                        <table style={{ ...styles.table, ...{ position: "relative" } }}>
+                        <table style={{
+                            ...styles.table, ...{ position: "relative", minHeight: "80px" }
+                        }}>
                             <thead style={styles.thead}>
                                 <tr>
                                     <th style={styles.th}>STT</th>

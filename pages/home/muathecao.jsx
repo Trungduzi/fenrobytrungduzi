@@ -5,10 +5,11 @@ import Tamthoi from "../../components/tamthoi";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import { getCardCreated } from "../../src/app/userApi";
+import { getCardCreated, updateN } from "../../src/app/userApi";
 
 export default function Muathecao() {
     const [user, setUser] = useState([]);
+    const [user1, setUser1] = useState([]);
     const [number, setNumber] = useState([]);
     const navigate = useNavigate();
     const ITEMS = [
@@ -41,6 +42,24 @@ export default function Muathecao() {
         },
     ];
 
+
+    useEffect(() => {
+        const storedUser = localStorage.getItem("user");
+        if (storedUser) {
+            const parsedUser = JSON.parse(storedUser);
+
+            (async () => {
+                const data = await updateN(parsedUser.id);
+                if (data) {
+                    setUser(data);
+                    localStorage.setItem("user", JSON.stringify(data));
+                } else {
+                    setUser(parsedUser);
+                }
+            })();
+        }
+    }, []);
+
     useEffect(() => {
         const fetchNumberCard = async () => {
             const res = await getCardCreated();
@@ -51,15 +70,8 @@ export default function Muathecao() {
         }
     }, [user.id]);
 
-    useEffect(() => {
-        const storedUser = localStorage.getItem("user");
-        if (storedUser) {
-            setUser(storedUser);
-        }
-    }, []);
-
     const handleRedirect = (path) => {
-        if (user) {
+        if (user.length != 0) {
             navigate(path);
         }
         else {
@@ -97,7 +109,7 @@ export default function Muathecao() {
                             <h3 className="title">{it.title}</h3>
 
 
-                            {(it.id < 2) ? (
+                            {(it.id == 1) ? (
                                 <>
                                     <div className="meta">
                                         <span className="plays" style={{ color: "white" }}>Số lượng: {number.toLocaleString("vi-VN")}</span>

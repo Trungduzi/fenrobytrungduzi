@@ -366,7 +366,7 @@ export default function NapTheTuDong() {
 
             <div style={{ ...styles.tableWrapper, ...styles.item3 }}>
                 <h4 style={{ fontWeight: 'bold', marginBottom: '15px' }}>Lịch sử nạp thẻ</h4>
-                <table style={{ ...styles.table, ...{ position: "relative" } }}>
+                <table style={{ ...styles.table, ...{ position: "relative", minHeight: 110 } }}>
                     <thead style={styles.thead}>
                         <tr>
                             <th style={styles.th}>STT</th>
